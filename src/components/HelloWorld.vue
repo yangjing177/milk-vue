@@ -16,7 +16,7 @@
 
           <div class="top-right">
             <span v-if="!showname">您好，欢迎来到<span class="xiannai">鲜奶随心订！</span></span>  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-            <a >[登陆]</a>
+            <router-link to="/login"><a href="Login.vue">[登陆]</a></router-link>
           </div>
 
 
@@ -37,8 +37,8 @@
       </el-carousel>
       </el-main>
 
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
+      <el-main>main</el-main>
+      <el-footer>{{fullName}}</el-footer>
     </el-container>
   </div>
 </template>
@@ -48,6 +48,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
+      fullName: 'Foo Bar',
       options: [{
         value: 'beijing',
         label: '北京',
@@ -112,6 +113,7 @@ export default {
     };
   }
 }
+
 </script>
 
 <style>
