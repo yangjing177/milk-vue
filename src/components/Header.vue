@@ -159,7 +159,7 @@
     color: #405aa8;
   }
   a:link{
-    color: #acacac;
+    color: #7a7a7a;
   }
   单击后访问
   a:visited{
@@ -173,7 +173,9 @@
   a:active{
     color: aquamarine;
   }
-
+  a{
+    text-decoration:none
+  }
 
 
 </style>
