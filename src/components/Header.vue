@@ -8,7 +8,6 @@
             配送
             <el-cascader
               :options="options"
-              v-model="selectedOptions"
               expand-trigger="hover"
               :show-all-levels="false"
             ></el-cascader>

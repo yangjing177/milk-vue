@@ -47,7 +47,7 @@
                 <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
               </el-form-item>
                 <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
-                <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
+                <el-button type="primary" style="width:100%;"  @click.native.prevent="handleLogin">
                   登录
                 </el-button>
             </el-form>
@@ -74,11 +74,11 @@
     },
     data(){
       const validateUsername = (rule, value, callback) => {
-      if (value.length = 0) {
-        callback(new Error('请输入用户名'))
-      } else {
-        callback()
-      }
+      // if (value.length = 0) {
+      //   callback(new Error('请输入用户名'))
+      // } else {
+      //   callback()
+      // }
     }
       const validatePass = (rule, value, callback) => {
         if (value.length < 5) {
@@ -96,6 +96,7 @@
           username: [{ required: true, trigger: 'blur', validator: validateUsername }],
           password: [{ required: true, trigger: 'blur', validator: validatePass }]
         },
+        pwdType: 'password'
       }
     },
     methods: {
@@ -106,21 +107,40 @@
           this.pwdType = 'password'
         }
       },
+
       // handleLogin() {
-      //   this.$refs.loginForm.validate(valid => {
-      //     if (valid) {
-      //       this.loading = true
-      //       this.$store.dispatch('Login', this.loginForm).then(() => {
-      //         this.loading = false
-      //         this.$router.push({ path: '/' })
-      //       }).catch(() => {
-      //         this.loading = false
-      //       })
-      //     } else {
-      //       console.log('error submit!!')
-      //       return false
-      //     }
-      //   })
+        // this.ajax({
+        //   type: "POST",
+        //   url: "/user/login",
+        //   data: {username:this.loginForm.username,password:this.loginForm.password},
+        //   dataType:"json",
+        //   success: function (data) {
+        //     alert("chenggong")
+        //   },
+        //   fail: function (data) {
+        //     alert("shibai")
+        //   }
+        // })
+
+        // this.$refs.loginForm.validate(valid => {
+        //   // alert(valid.length)
+        //   if(valid) {
+        //   }
+        //   else {
+        //   }
+          // if (valid) {
+          //   this.loading = true
+          //   this.$store.dispatch('Login', this.loginForm).then(() => {
+          //     this.loading = false
+          //     this.$router.push({ path: '/' })
+          //   }).catch(() => {
+          //     this.loading = false
+          //   })
+          // } else {
+          //   console.log('error submit!!')
+          //   return false
+          // }
+        // })
       // }
     }
     }
