@@ -14,15 +14,18 @@
           </div>
 
           <div class="top-right">
-            <span v-if="!showname">
+            <span v-if="user">
+              {{user}}! 欢迎登录鲜奶随心订
+              <router-link to="/login" @click="logout"><a href="Login.vue" @click="logout">[退出]</a></router-link>
+            </span>
+            <span v-else>
               您好，欢迎来到<span class="xiannai">鲜奶随心订！</span>  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
               <router-link to="/login"><a href="Login.vue">[登录]</a></router-link>&nbsp;&nbsp;
               <router-link to="/register"><a href="Register.vue">[注册]</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-              <router-link to=""><a href=".vue">会员中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-              <router-link to=""><a href=".vue">我的订单</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-              <router-link to=""><a href=".vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-
             </span>
+            <router-link to=""><a href=".vue">会员中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to=""><a href=".vue">我的订单</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to=""><a href=".vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
         </div>
       </el-col>
@@ -100,6 +103,21 @@
         ],
         showname:false, //判断是否已登陆
       };
+    },
+    methods: {
+      // login () {
+      //   this.$router.replace('/')
+      // },
+      logout () {
+        this.$store.dispatch('logout').then(() => {
+          this.$router.replace('/login')
+        })
+      }
+    },
+    computed:{
+      user(){
+        return this.$store.state.user
+      }
     }
   }
 
@@ -114,9 +132,11 @@
     border-radius: 4px;
   }
   .bg-purple-dark {
+    width: 2000px;
     background: #99a9bf;
   }
   .bg-purple-light {
+    width: 2000px;
     background: #f5f5f5;
     border-bottom: 1px solid #c7c7c7;
   }

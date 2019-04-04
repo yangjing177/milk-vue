@@ -23,6 +23,7 @@
             <span class="user-login-word">用户登录</span>
           </div>
           <hr style="color:#c5c4c4;margin-bottom: 5px;border-width: 1px 0px 0px;border-top-width: 1px;border-top-style: solid;padding-bottom: 10px;">
+
           <div class="login-form-style">
 
             <!--登陆form表单-->
@@ -68,6 +69,7 @@
 
 <script>
   import Header from '@/components/Header'
+  // import request from '@/utils/request'
   export default {
     components: {
       'vheader': Header
@@ -96,6 +98,7 @@
           username: [{ required: true, trigger: 'blur', validator: validateUsername }],
           password: [{ required: true, trigger: 'blur', validator: validatePass }]
         },
+        loading: false,
         pwdType: 'password'
       }
     },
@@ -108,40 +111,43 @@
         }
       },
 
-      // handleLogin() {
-        // this.ajax({
-        //   type: "POST",
-        //   url: "/user/login",
-        //   data: {username:this.loginForm.username,password:this.loginForm.password},
-        //   dataType:"json",
-        //   success: function (data) {
-        //     alert("chenggong")
-        //   },
-        //   fail: function (data) {
-        //     alert("shibai")
-        //   }
-        // })
-
+      handleLogin() {
+        debugger
         // this.$refs.loginForm.validate(valid => {
-        //   // alert(valid.length)
-        //   if(valid) {
-        //   }
-        //   else {
-        //   }
           // if (valid) {
           //   this.loading = true
-          //   this.$store.dispatch('Login', this.loginForm).then(() => {
-          //     this.loading = false
-          //     this.$router.push({ path: '/' })
-          //   }).catch(() => {
-          //     this.loading = false
+          //   this.$axios.post('/user/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
+          //   }
+          //     debugger
+          //     this.$store.dispatch('login', this.user).then(() => {
+          //       // this.$notify({
+          //       //   type: 'success',
+          //       //   // message: '欢迎你,' + this.user.name + '!',
+          //       //   duration: 3000
+          //       // })
+          //       this.$router.replace('/')
+          //     })
+          //   }).catch((error) =>{
+          //     console.log(error)
           //   })
+          // if (valid) {
+            if (this.loginForm.username === 'admin' && this.loginForm.password === 'admin') {
+              // dispatch采用Promise链式调用
+              this.$store.dispatch('login', this.loginForm.username).then(() => {
+                // this.$notify({
+                //   type: 'success',
+                //   message: '欢迎你,' + this.user.name + '!',
+                //   duration: 3000
+                // })
+                this.$router.replace('/')
+              })
+            }
           // } else {
-          //   console.log('error submit!!')
           //   return false
           // }
         // })
-      // }
+      }
+
     }
     }
 
