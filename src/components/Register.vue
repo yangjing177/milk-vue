@@ -9,7 +9,7 @@
         <img src='../image/logo.jpg'>
       </div>
       <div class="header-right">
-        <span class="huan-login">欢迎登录</span>
+        <span class="huan-login">欢迎注册</span>
       </div>
     </el-header>
     <!--<hr style="width:100%;border: 1px solid black;margin-top: 30px"/>-->
