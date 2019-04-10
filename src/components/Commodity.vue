@@ -34,13 +34,14 @@
                       <span style="float: left">新鲜牛奶</span>
                     </template>
                     <el-menu-item-group>
-                      <el-menu-item index="FreshMilk" style="min-width: 0px">致优</el-menu-item>
-                      <el-menu-item index="FreshYogurt">优倍</el-menu-item>
-                      <el-menu-item index="1-3">纯鲜牛奶</el-menu-item>
-                      <el-menu-item index="1-4">农场恋人</el-menu-item>
-                      <el-menu-item index="1-5">儿童牛奶</el-menu-item>
-                      <el-menu-item index="1-6">经典玻璃瓶</el-menu-item>
-                      <el-menu-item index="1-7">香浓高钙</el-menu-item>
+                      <el-menu-item index="ZhiYou" style="min-width: 0px">致优</el-menu-item>
+                      <el-menu-item index="YouBei">优倍</el-menu-item>
+                      <el-menu-item index="ChunXian">纯鲜牛奶</el-menu-item>
+                      <el-menu-item index="Children">儿童牛奶</el-menu-item>
+                      <el-menu-item index="BoBox">经典玻璃瓶</el-menu-item>
+                      <el-menu-item index="NongXiang">香浓高钙</el-menu-item>
+                      <el-menu-item index="DiZhi">低脂高钙</el-menu-item>
+                      <el-menu-item index="NiuRu">牛乳饮品</el-menu-item>
                     </el-menu-item-group>
                   </el-submenu>
 
@@ -49,58 +50,51 @@
                       <span style="float: left">新鲜酸奶</span>
                     </template>
                     <el-menu-item-group>
-                      <el-menu-item index="2-1">白雪</el-menu-item>
-                      <el-menu-item index="2-2">畅优</el-menu-item>
-                      <el-menu-item index="2-3">如实</el-menu-item>
-                      <el-menu-item index="2-4">赏味</el-menu-item>
+                      <el-menu-item index="BaiXue">白雪</el-menu-item>
+                      <el-menu-item index="ChangYou">畅优</el-menu-item>
+                      <el-menu-item index="RuShi">如实</el-menu-item>
+                      <el-menu-item index="ShangWei">赏味</el-menu-item>
+                      <el-menu-item index="JianNeng">健能</el-menu-item>
+                      <el-menu-item index="ErTongJianNeng">儿童健能</el-menu-item>
+                      <el-menu-item index="FengWeiYogurt">风味酸牛奶</el-menu-item>
                     </el-menu-item-group>
                   </el-submenu>
 
-                  <el-submenu index="2">
+                  <el-submenu index="3">
                     <template slot="title">
                       <span style="float: left">儿童乳品</span>
                     </template>
                     <el-menu-item-group>
-                      <el-menu-item index="2-1">白雪</el-menu-item>
-                      <el-menu-item index="2-2">畅优</el-menu-item>
-                      <el-menu-item index="2-3">如实</el-menu-item>
-                      <el-menu-item index="2-4">赏味</el-menu-item>
+                      <el-menu-item index="ChildrenMilk">儿童牛奶</el-menu-item>
+                      <el-menu-item index="ChildrenJianNeng">儿童健能</el-menu-item>
                     </el-menu-item-group>
                   </el-submenu>
 
-                  <el-submenu index="2">
-                    <template slot="title">
-                      <span style="float: left">进口商品</span>
-                    </template>
-                    <el-menu-item-group>
-                      <el-menu-item index="2-1">白雪</el-menu-item>
-                      <el-menu-item index="2-2">畅优</el-menu-item>
-                      <el-menu-item index="2-3">如实</el-menu-item>
-                      <el-menu-item index="2-4">赏味</el-menu-item>
-                    </el-menu-item-group>
-                  </el-submenu>
-
-                  <el-submenu index="2">
-                    <template slot="title">
-                      <span style="float: left">光明果汁</span>
-                    </template>
-                    <el-menu-item-group>
-                      <el-menu-item index="2-1">白雪</el-menu-item>
-                      <el-menu-item index="2-2">畅优</el-menu-item>
-                      <el-menu-item index="2-3">如实</el-menu-item>
-                      <el-menu-item index="2-4">赏味</el-menu-item>
-                    </el-menu-item-group>
-                  </el-submenu>
-
-                  <el-submenu index="2">
+                  <el-submenu index="4">
                     <template slot="title">
                       <span style="float: left">经典礼盒</span>
                     </template>
                     <el-menu-item-group>
-                      <el-menu-item index="2-1">白雪</el-menu-item>
-                      <el-menu-item index="2-2">畅优</el-menu-item>
-                      <el-menu-item index="2-3">如实</el-menu-item>
-                      <el-menu-item index="2-4">赏味</el-menu-item>
+                      <el-menu-item index="MoLiSiAn">莫斯利安</el-menu-item>
+                      <el-menu-item index="YuChunMilk">优+纯牛奶</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
+
+                  <el-submenu index="5">
+                    <template slot="title">
+                      <span style="float: left">光明奶酪</span>
+                    </template>
+                    <el-menu-item-group>
+                      <el-menu-item index="HanNaiLao">韩国奶酪</el-menu-item>
+                    </el-menu-item-group>
+                  </el-submenu>
+
+                  <el-submenu index="6">
+                    <template slot="title">
+                      <span style="float: left">光明奶粉</span>
+                    </template>
+                    <el-menu-item-group>
+                      <el-menu-item index="ImportMilk">进口奶粉</el-menu-item>
                     </el-menu-item-group>
                   </el-submenu>
 

@@ -20,7 +20,7 @@
         <div class="main-right">
           <div class="login-outside">
             <div class="login-right-reg">
-              <span class="user-login-word">用户登录</span>
+              <span class="user-login-word">用户注册</span>
             </div>
             <hr style="color:#c5c4c4;margin-bottom: 5px;border-width: 1px 0px 0px;border-top-width: 1px;border-top-style: solid;padding-bottom: 10px;">
             <div class="login-form-style">
@@ -33,7 +33,7 @@
                 <span class="svg-container svg-container_login">
                   <svg-icon icon-class="user" />
                 </span>
-                  <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+                  <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名" />
                 </el-form-item>
 
                 <el-form-item prop="password">
@@ -42,13 +42,12 @@
                 </span>
                   <!--@keyup.enter.native:按回车触发登陆 autoComplete:启用自动完成功能   placeholder:文本框注释-->
                   <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-                            placeholder="password"></el-input>
+                            placeholder="密码"></el-input>
                   <!--所有的v-on都可以简写为@，比如说v-click可以简写为@click  单击触发事件-->
-                  <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
                 </el-form-item>
                 <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
                 <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-                  登录
+                  注册
                 </el-button>
               </el-form>
               <div class="no-user">
@@ -99,29 +98,9 @@
       }
     },
     methods: {
-      showPwd() {
-        if (this.pwdType === 'password') {
-          this.pwdType = ''
-        } else {
-          this.pwdType = 'password'
-        }
-      },
-      // handleLogin() {
-      //   this.$refs.loginForm.validate(valid => {
-      //     if (valid) {
-      //       this.loading = true
-      //       this.$store.dispatch('Login', this.loginForm).then(() => {
-      //         this.loading = false
-      //         this.$router.push({ path: '/' })
-      //       }).catch(() => {
-      //         this.loading = false
-      //       })
-      //     } else {
-      //       console.log('error submit!!')
-      //       return false
-      //     }
-      //   })
-      // }
+      handleLogin() {
+
+      }
     }
   }
 

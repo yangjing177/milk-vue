@@ -15,7 +15,7 @@
             <router-link to=""><a href=""><span class="top-text">首&nbsp;&nbsp;页</span></a>&nbsp;&nbsp;&nbsp;&nbsp;|</router-link>
           </div>
           <div class="lu-navtit clearfix">
-            <router-link to="/FreshMilk"><a href="FreshMilk.vue"><span class="top-text">新鲜牛奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
+            <router-link to="/ZhiYou"><a href="ZhiYou.vue"><span class="top-text">新鲜牛奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
           </div>
           <div class="lu-navtit clearfix">
             <router-link to=""><a href=""><span class="top-text">新鲜酸奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
@@ -50,7 +50,7 @@
 
       <el-main style="padding: 0px">
         <!--轮播图-->
-      <el-carousel :interval="4000"  height="660px">
+      <el-carousel :interval="4000"  height="618px">
         <el-carousel-item v-for="item in imagesbox" :key="item.id">
           <img :src="item.url"/>
         </el-carousel-item>
@@ -126,12 +126,11 @@ export default {
     return {
       showname:false, //判断是否已登陆
       imagesbox:[
-        {id:0,url:require("../image/test.jpg")},
+        {id:0,url:require("../image/1.jpg")},
         {id:1,url:require("../image/2.jpg")},
         {id:2,url:require("../image/3.jpg")},
         {id:3,url:require("../image/4.jpg")},
         {id:4,url:require("../image/5.jpg")},
-        {id:5,url:require("../image/6.jpg")},
       ]
     };
   }

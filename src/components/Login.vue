@@ -34,7 +34,7 @@
                 <span class="svg-container svg-container_login">
                   <svg-icon icon-class="user" />
                 </span>
-                <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+                <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名" />
               </el-form-item>
 
               <el-form-item prop="password">
@@ -43,7 +43,7 @@
                 </span>
                 <!--@keyup.enter.native:按回车触发登陆 autoComplete:启用自动完成功能   placeholder:文本框注释-->
                 <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-                          placeholder="password"></el-input>
+                          placeholder="密码"></el-input>
                 <!--所有的v-on都可以简写为@，比如说v-click可以简写为@click  单击触发事件-->
                 <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
               </el-form-item>
@@ -116,7 +116,7 @@
         // this.$refs.loginForm.validate(valid => {
           // if (valid) {
           //   this.loading = true
-          //   this.$axios.post('/user/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
+            this.$axios.post('/users/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
           //   }
           //     debugger
           //     this.$store.dispatch('login', this.user).then(() => {
@@ -131,21 +131,15 @@
           //     console.log(error)
           //   })
           // if (valid) {
-            if (this.loginForm.username === 'admin' && this.loginForm.password === 'admin') {
-              // dispatch采用Promise链式调用
+          //   if (this.loginForm.username === 'admin' && this.loginForm.password === 'admin') {
               this.$store.dispatch('login', this.loginForm.username).then(() => {
-                // this.$notify({
-                //   type: 'success',
-                //   message: '欢迎你,' + this.user.name + '!',
-                //   duration: 3000
-                // })
                 this.$router.replace('/')
               })
-            }
+            // }
           // } else {
           //   return false
           // }
-        // })
+        })
       }
 
     }

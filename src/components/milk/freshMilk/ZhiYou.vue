@@ -5,9 +5,9 @@
       <div class="hot-list">
 
         <el-row >
-          <el-col :span="4" v-for="(project, index) in 2" :key="index" :offset="index > 0 ? 2:0">
+          <el-col :span="4" v-for="(project, index) in hotgoods" :key="index" :offset="index > 0 ? 2:0">
             <el-card :body-style="{ padding: '0px' }" style="width: 222px;height: 292px" shadow="hover">
-              <img src="../../../image/hotshop1.png" class="image">
+              <img :src=project.pic class="image">
               <div class="goods-introduce">{{project.goodsname}}</div>
               <div class="goods-price">{{project.price}}</div>
               <div class="bottom">
@@ -78,11 +78,24 @@
             total: 0,
             page: 1,
             pageSize: 8,
+            hotgoods:[
+              {
+                pic: require("../../../image/hotshop1.png"),
+                goodsname: '优倍高品质鲜牛奶新鲜杯200ml',
+                price: '5.6'
+              },
+              {
+                pic: require("../../../image/hotshop2.png"),
+                goodsname: '畅优原味风味发酵乳200g',
+                price: '4.8'
+              }
+            ],
             goods:[],
             typeList:['不限','牛奶','酸奶','配方奶粉'],
             packagerList:['不限','组','袋','盒','杯','瓶','罐'],
             sizeList:['不限','小于299','300至499','大于500'],
             selected:{
+              parentType:'新鲜牛奶',
               brand:'致优',
               type:'不限',
               packager:'不限',
