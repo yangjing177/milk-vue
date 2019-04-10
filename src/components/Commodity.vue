@@ -1,5 +1,5 @@
 <template>
-  <div id="HelloWorld" style="height: 2500px">
+  <div id="HelloWorld" style="height: 2500px;width: 100%">
     <el-container>
       <el-header class="header" style="padding: 0px">
         <vheader />
@@ -7,7 +7,7 @@
 
       <el-header>
         <div class="header-left">
-          <img src='../image/logo.jpg'>
+          <router-link to="/"><a href=""><img src='../image/logo.jpg'></a></router-link>
         </div>
         <div class="header-right">
           <span class="huan-login">列表</span>
@@ -31,8 +31,7 @@
                          router>
                   <el-submenu index="1">
                     <template slot="title">
-
-                      <span>新鲜牛奶</span>
+                      <span style="float: left">新鲜牛奶</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="FreshMilk" style="min-width: 0px">致优</el-menu-item>
@@ -47,7 +46,7 @@
 
                   <el-submenu index="2">
                     <template slot="title">
-                      <span>新鲜酸奶</span>
+                      <span style="float: left">新鲜酸奶</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="2-1">白雪</el-menu-item>
@@ -59,7 +58,7 @@
 
                   <el-submenu index="2">
                     <template slot="title">
-                      <span>儿童乳品</span>
+                      <span style="float: left">儿童乳品</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="2-1">白雪</el-menu-item>
@@ -71,7 +70,7 @@
 
                   <el-submenu index="2">
                     <template slot="title">
-                      <span>进口商品</span>
+                      <span style="float: left">进口商品</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="2-1">白雪</el-menu-item>
@@ -83,7 +82,7 @@
 
                   <el-submenu index="2">
                     <template slot="title">
-                      <span>光明果汁</span>
+                      <span style="float: left">光明果汁</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="2-1">白雪</el-menu-item>
@@ -95,7 +94,7 @@
 
                   <el-submenu index="2">
                     <template slot="title">
-                      <span>经典礼盒</span>
+                      <span style="float: left">经典礼盒</span>
                     </template>
                     <el-menu-item-group>
                       <el-menu-item index="2-1">白雪</el-menu-item>
@@ -185,9 +184,6 @@
     width: 1200px;
     height: 1308px;
     margin: auto;
-  }
-  span{
-    float: left;
   }
   .list-left{
     width: 198px;

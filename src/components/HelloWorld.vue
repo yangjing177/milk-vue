@@ -7,7 +7,7 @@
 
       <el-header height="103px">
         <div class="header-left">
-          <img src='../image/logo.jpg'>
+          <router-link to="/"><a href=""><img src='../image/logo.jpg'></a></router-link>
         </div>
 
         <div class="lu-nav fl clearfix">
@@ -15,7 +15,7 @@
             <router-link to=""><a href=""><span class="top-text">首&nbsp;&nbsp;页</span></a>&nbsp;&nbsp;&nbsp;&nbsp;|</router-link>
           </div>
           <div class="lu-navtit clearfix">
-            <router-link to="/commodity"><a href="Commodity.vue"><span class="top-text">新鲜牛奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
+            <router-link to="/FreshMilk"><a href="FreshMilk.vue"><span class="top-text">新鲜牛奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
           </div>
           <div class="lu-navtit clearfix">
             <router-link to=""><a href=""><span class="top-text">新鲜酸奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
@@ -139,7 +139,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   #HelloWorld {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

@@ -4,8 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Commodity from '@/components/Commodity'
-import FreshMilk from '@/components/milk/FreshMilk'
-import FreshYogurt from '@/components/milk/FreshYogurt'
+import FreshMilk from '@/components/milk/freshMilk/FreshMilk'
+import FreshYogurt from '@/components/milk/freshMilk/FreshYogurt'
 import menus from '@/config/menu-config'
 
 Vue.use(Router)

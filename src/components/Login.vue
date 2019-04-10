@@ -6,7 +6,7 @@
 
     <el-header>
       <div class="header-left">
-        <img src='../image/logo.jpg'>
+        <router-link to="/"><a href=""><img src='../image/logo.jpg'></a></router-link>
       </div>
       <div class="header-right">
         <span class="huan-login">欢迎登录</span>
