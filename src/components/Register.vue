@@ -17,7 +17,7 @@
 
     <div class="main-background">
       <el-main>
-        <div class="main-right">
+        <div class="main-right1">
           <div class="login-outside">
             <div class="login-right-reg">
               <span class="user-login-word">用户注册</span>
@@ -31,27 +31,43 @@
                 <!--<h3 class="title">vue-element-admin</h3>-->
                 <el-form-item prop="username">
                 <span class="svg-container svg-container_login">
-                  <svg-icon icon-class="user" />
+                  <!--<svg-icon icon-class="user" />-->
                 </span>
                   <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名" />
                 </el-form-item>
 
                 <el-form-item prop="password">
                 <span class="svg-container">
-                  <svg-icon icon-class="password"></svg-icon>
+                  <!--<svg-icon icon-class="password"></svg-icon>-->
                 </span>
                   <!--@keyup.enter.native:按回车触发登陆 autoComplete:启用自动完成功能   placeholder:文本框注释-->
                   <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
                             placeholder="密码"></el-input>
                   <!--所有的v-on都可以简写为@，比如说v-click可以简写为@click  单击触发事件-->
                 </el-form-item>
+
+                <!--手机号-->
+                <el-form-item prop="mobile">
+                <span class="svg-container svg-container_login">
+                  <!--<svg-icon icon-class="" />-->
+                </span>
+                <el-input name="mobile" type="text" v-model="loginForm.mobile" autoComplete="on" placeholder="手机号" />
+              </el-form-item>
+
+                <!--地址-->
+                <el-form-item prop="adress">
+                <span class="svg-container svg-container_login">
+                </span>
+                  <el-input name="adress" type="text" v-model="loginForm.adress" autoComplete="on" placeholder="地址" />
+                </el-form-item>
+
                 <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
                 <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
                   注册
                 </el-button>
               </el-form>
               <div class="no-user">
-                还没有账号？<router-link to="/register"><a href="Register.vue">立即注册</a></router-link>
+                <!--还没有账号？<router-link to="/register"><a href="Register.vue">立即注册</a></router-link>-->
               </div>
               <div>
 
@@ -89,7 +105,9 @@
       return {
         loginForm: {
           username: '',
-          password: ''
+          password: '',
+          mobile:'',
+          adress:''
         },
         loginRules: {
           username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -99,7 +117,20 @@
     },
     methods: {
       handleLogin() {
-
+        this.$axios.post('/users/register',JSON.stringify(this.loginForm),
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) =>{
+          debugger
+          if(response.data=="注册成功"){
+            this.$router.replace('/login')
+          }
+          else if (response.data=="用户名已存在") {
+            callback(new Error('用户名已存在'))
+          }
+        }).catch(response => {
+          debugger
+          console.log("error")
+        })
       }
     }
   }
@@ -138,9 +169,9 @@
   .aside-img{
     float: left;
   }
-  .main-right{
+  .main-right1{
     width: 417px;
-    height: 380px;
+    height: 480px;
     border: 1px solid #d7d7d7;
     border-top: 2px solid red;
     margin-top: 120px;
@@ -149,7 +180,7 @@
   }
   .login-outside{
     width: 335px;
-    height: 330px;
+    height: 430px;
     /*border: 1px solid black;*/
     margin-top: 41px;
     margin-left: 44px;
