@@ -31,6 +31,10 @@ import HanNaiLao from '@/components/milk/cheese/HanNaiLao'
 
 import ImportMilk from '@/components/milk/naifen/ImportMilk'
 
+import Goods from '@/components/Goods'
+import Car from '@/components/Car'
+
+
 Vue.use(Router)
 
 export const constantRouterMap = [
@@ -44,6 +48,7 @@ export const constantRouterMap = [
       name: 'Login',
       component: Login
     },
+
     {
       path: '/register',
       name: 'Register',
@@ -141,6 +146,16 @@ export const constantRouterMap = [
         },
       ]
     },
+  {
+    path: '/Goods',
+    name: 'Goods',
+    component: Goods
+  },
+  {
+    path: '/Car',
+    name: 'Car',
+    component: Car
+  },
 
   ]
 export default new Router({

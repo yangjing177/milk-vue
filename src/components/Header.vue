@@ -25,7 +25,7 @@
             </span>
             <router-link to=""><a href=".vue">会员中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             <router-link to=""><a href=".vue">我的订单</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to=""><a href=".vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to="/Car"><a href="Car.vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
         </div>
       </el-col>

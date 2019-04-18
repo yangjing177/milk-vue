@@ -122,7 +122,6 @@
       },
       data () {
         return {
-          menu: menu
         }
       },
       methods: {
@@ -137,7 +136,8 @@
 
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+
+<style scoped>
   .header-left{
     margin-left: 350px;
     float: left;

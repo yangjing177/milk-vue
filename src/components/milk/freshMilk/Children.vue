@@ -108,8 +108,6 @@
     },
     methods:{
       fetchData() {
-        debugger
-        console.log(this.selected);
         // console.log(JSON.stringify(this.selected))
         this.$axios.post('/goods/list',JSON.stringify(this.selected),
           {headers: {'Content-Type': 'application/json'}}
@@ -125,13 +123,11 @@
         })
       },
       handleSizeChange(val) {
-        debugger
         this.page = val
         console.log(this.page)
         this.fetchData()
       },
       handleCurrentChange(val) {
-        debugger
         this.page = val
         console.log(this.page)
         this.fetchData()

@@ -121,15 +121,15 @@
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) =>{
           debugger
-          if(response.data=="注册成功"){
+          // if(response.data=="注册成功"){
             this.$router.replace('/login')
-          }
-          else if (response.data=="用户名已存在") {
-            callback(new Error('用户名已存在'))
-          }
+          // }
+          // else if (response.data==="用户名已存在") {
+          //   callback(new Error('用户名已存在'))
+          // }
         }).catch(response => {
           debugger
-          console.log("error")
+          console.log("注册失败")
         })
       }
     }
@@ -137,11 +137,7 @@
 
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-  $bg:#2d3a4b;
-  $dark_gray:#889aa4;
-  $light_gray:#eee;
-
+<style scoped>
   .header-left{
     margin-left: 350px;
     float: left;
@@ -161,6 +157,13 @@
     font-family: '黑体';
     color: #979997;
   }
+</style>
+
+<style rel="stylesheet/scss" lang="scss">
+  $bg:#2d3a4b;
+  $dark_gray:#889aa4;
+  $light_gray:#eee;
+
   .main-background{
     width: 100%;
     height: 748px;

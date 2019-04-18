@@ -112,33 +112,10 @@
       },
 
       handleLogin() {
-        debugger
-        // this.$refs.loginForm.validate(valid => {
-          // if (valid) {
-          //   this.loading = true
             this.$axios.post('/users/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
-          //   }
-          //     debugger
-          //     this.$store.dispatch('login', this.user).then(() => {
-          //       // this.$notify({
-          //       //   type: 'success',
-          //       //   // message: '欢迎你,' + this.user.name + '!',
-          //       //   duration: 3000
-          //       // })
-          //       this.$router.replace('/')
-          //     })
-          //   }).catch((error) =>{
-          //     console.log(error)
-          //   })
-          // if (valid) {
-          //   if (this.loginForm.username === 'admin' && this.loginForm.password === 'admin') {
               this.$store.dispatch('login', this.loginForm.username).then(() => {
                 this.$router.replace('/')
               })
-            // }
-          // } else {
-          //   return false
-          // }
         })
       }
 
@@ -147,11 +124,8 @@
 
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-  $bg:#2d3a4b;
-  $dark_gray:#889aa4;
-  $light_gray:#eee;
 
+<style scoped>
   .header-left{
     margin-left: 350px;
     float: left;
@@ -171,6 +145,13 @@
     font-family: '黑体';
     color: #979997;
   }
+</style>
+<style rel="stylesheet/scss" lang="scss">
+  $bg:#2d3a4b;
+  $dark_gray:#889aa4;
+  $light_gray:#eee;
+
+
   .main-background{
     width: 100%;
     height: 748px;
