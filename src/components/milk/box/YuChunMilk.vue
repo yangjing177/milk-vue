@@ -8,7 +8,7 @@
           <el-col :span="4" v-for="(project, index) in hotgoods" :key="index" :offset="index > 0 ? 2:0">
             <el-card :body-style="{ padding: '0px' }" style="width: 222px;height: 292px" shadow="hover">
               <img :src=project.pic class="image">
-              <div class="goods-introduce">{{project.goodsname}}</div>
+              <div class="goods-introduce">{{project.goodsName}}</div>
               <div class="goods-price">随心订价：￥{{project.price}}</div>
               <div class="bottom">
                 <el-button type="danger" size="small" style=""><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
@@ -45,7 +45,7 @@
           <el-col :span="4" v-for="(project, index) in goods" :key="index" :offset="index%4 > 0 ? 2:0" style="margin-bottom: 10px">
             <el-card :body-style="{ padding: '0px' }" style="width: 222px;height: 292px" shadow="hover">
               <img :src="project.pic" class="image">
-              <div class="goods-introduce">{{project.goodsname}}</div>
+              <div class="goods-introduce">{{project.goodsName}}</div>
               <div class="goods-price">随心订价：￥{{project.price}}</div>
               <div class="bottom">
                 <el-button type="danger" size="small" style=""><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
@@ -81,12 +81,12 @@
         hotgoods:[
           {
             pic: require("../../../image/hotshop1.png"),
-            goodsname: '优倍高品质鲜牛奶新鲜杯200ml',
+            goodsName: '优倍高品质鲜牛奶新鲜杯200ml',
             price: '5.6'
           },
           {
             pic: require("../../../image/hotshop2.png"),
-            goodsname: '畅优原味风味发酵乳200g',
+            goodsName: '畅优原味风味发酵乳200g',
             price: '4.8'
           }
         ],
