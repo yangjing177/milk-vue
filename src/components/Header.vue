@@ -10,6 +10,7 @@
               :options="options"
               expand-trigger="hover"
               :show-all-levels="false"
+              size="mini"
             ></el-cascader>
           </div>
 
@@ -123,7 +124,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .el-row {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -151,7 +152,7 @@
     height: 26px;
     margin-left: 400px;
     font-size: 14px;
-    top: -7px;
+    top: -3px;
     /*left: 400px;*/
     position: absolute;
   }
@@ -160,10 +161,10 @@
     height: 26px;
     /*font-size: 14px;*/
   }
-  .el-input__inner{
-    width:100px;
-    height: 23px;
-  }
+  /*.el-input__inner{*/
+    /*width:100px;*/
+    /*height: 23px;*/
+  /*}*/
   /*配送地址  结束*/
 
   .top-right{
@@ -177,6 +178,11 @@
   .xiannai{
     color: #405aa8;
   }
+
+
+
+</style>
+<style>
   a:link{
     color: #7a7a7a;
   }
@@ -195,6 +201,4 @@
   a{
     text-decoration:none
   }
-
-
 </style>

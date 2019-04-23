@@ -172,7 +172,7 @@
           price: '',
           firstDate: '',
           lastDate: '',
-          adress: '',
+          address: '',
           number: '',
           total: '',
           totalPrice: '',
@@ -246,7 +246,6 @@
       updateVisible(row) {
         this.temp = Object.assign({}, row)
         this.dialogTableVisible = true
-        console.log(this.temp)
       },
       //批量删除
       delAll() {
@@ -313,7 +312,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .HelloWorld {
     position: relative;
     height: 100%;

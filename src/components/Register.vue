@@ -58,7 +58,7 @@
                 <el-form-item prop="adress">
                 <span class="svg-container svg-container_login">
                 </span>
-                  <el-input name="adress" type="text" v-model="loginForm.adress" autoComplete="on" placeholder="地址" />
+                  <el-input name="adress" type="text" v-model="loginForm.address" autoComplete="on" placeholder="地址" />
                 </el-form-item>
 
                 <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
@@ -107,7 +107,7 @@
           username: '',
           password: '',
           mobile:'',
-          adress:''
+          address:''
         },
         loginRules: {
           username: [{ required: true, trigger: 'blur', validator: validateUsername }],

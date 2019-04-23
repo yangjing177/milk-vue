@@ -195,7 +195,7 @@
           price: '',
           firstDate: '',
           lastDate: '',
-          adress: '',
+          address: '',
           number: '1',
           total: '',
           totalPrice: '',
@@ -224,7 +224,7 @@
         for (let i = 0; i < this.selectedOptions.length; i++) {
           adr += this.selectedOptions[i]
         }
-        this.tempCar.adress = adr
+        this.tempCar.address = adr
         this.tempCar.firstDate = this.value1[0]
         this.tempCar.lastDate = this.value1[1]
         this.tempCar.goodsId = this.goods.id
