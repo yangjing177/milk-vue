@@ -53,7 +53,7 @@
             </div>
             <div class="add-cait fl clearfix">
               <router-link to="/Car">
-                <a href="car.vue">
+                <a href="Car.vue">
                   <div class="select-c">
                     <i>
                       <div class="CCNum1" style="display: block;" v-if="carCount!=0">{{carCount}}</div>

@@ -87,17 +87,19 @@
                 </template>
               </el-table-column>
             </el-table>
+
             <div class="car-pay" v-if="carList!=null&&carList!=''">
               <div style="float: right">
                 <span style="font-size: 14px;float: left;line-height: 42px">
                   合计金额：
                 </span>
                 <span style="font-size: 30px;float: left;color: red">￥{{totalMoney}}&nbsp;&nbsp;&nbsp;</span>
-                <el-button  type="danger" style="float: left;width: 165px;height: 42px">去结算</el-button>
+                <el-button  type="danger" style="float: left;width: 165px;height: 42px" @click="jumpOrder">去结算</el-button>
               </div>
             </div>
           </div>
         </el-main>
+
       </el-container>
 
       //日期修改弹框
@@ -137,10 +139,9 @@
         width="300px" center>
         <div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
         <span slot="footer" class="dialog-footer">
-      <el-button @click="delVisible = false">取 消</el-button>
-      <el-button type="primary" @click="deleteCar">确 定</el-button>
-  </span>
-
+        <el-button @click="delVisible = false">取 消</el-button>
+        <el-button type="primary" @click="deleteCar">确 定</el-button>
+        </span>
       </el-dialog>
 
 
@@ -184,6 +185,7 @@
     },
     created() {
       this.fetchCarData()
+      // this.multipleSelection=this.getCar()
     },
     methods: {
       fetchCarData() {
@@ -231,6 +233,7 @@
           console.log("error")
         })
       },
+      //购物车删除
       deleteCar(){
         this.delVisible=false
         this.$axios.post('/car/delAll',
@@ -283,6 +286,10 @@
       user(){
         return this.$store.state.user
       },
+      //获取购物车
+      getCar() {
+        return this.$store.state.tempCar
+      },
       //结算
       getTotalMoney() {
         // 商品总价首先置0，判断选中后，再计入总价
@@ -295,6 +302,11 @@
         }
         this.totalMoney = total.toFixed(2);
       },
+      jumpOrder(){
+        this.$store.dispatch('saveCar', this.multipleSelection).then(() => {
+          this.$router.replace("/Order")
+        })
+      }
     },
 
 
@@ -389,4 +401,5 @@
     padding-bottom: 10px;
     margin-top: 20px;
   }
+
 </style>

@@ -165,7 +165,6 @@
         this.$store.dispatch('saveGoods', project).then(() => {
           this.$router.replace("/Details")
         })
-
       }
 
     }

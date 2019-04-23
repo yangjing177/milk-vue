@@ -34,7 +34,7 @@
               </div>
               <div class="details-into">
                 <div class="details-into-top">
-                  <a href="#" class="timtle">小口瓶鲜牛奶220ml</a>
+                  <a href="#" class="timtle">{{goods.goodsName}}</a>
                   <span class="timtle-jj" style="color:#ff0404; ">温馨提示：该产品玻璃瓶包装需要回收。请饮用完后及时放回奶箱中，谢谢。</span>
                 </div>
                 <div class="role-price">
@@ -91,7 +91,7 @@
               <span class="car-pay-text">{{goods.goodsName}},容量<span style="color: red">{{goods.size}}ml</span>,每次<span style="color: red">{{tempCar.number}}</span>份,每日送,从{{value1[0]}}到{{value1[1]}}</span>
               <div style="float: right">
                 <el-button type="danger" style="float: left;width: 165px;height: 42px" @click="buyCar">立即购买</el-button>
-                <el-button type="danger" style="float: left;width: 165px;height: 42px" @click="addCar">加入购物车</el-button>
+                <el-button type="danger" style="float: left;width: 165px;height: 42px" @click="insertCar">加入购物车</el-button>
               </div>
             </div>
           </div>
@@ -219,6 +219,7 @@
       handleChange(value) {
         console.log(value)
       },
+      //立即购买
       addCar() {
         var adr = ''
         for (let i = 0; i < this.selectedOptions.length; i++) {
@@ -231,7 +232,6 @@
         this.tempCar.goodsName = this.goods.goodsName
         this.tempCar.price = this.goods.price
 
-
         this.tempCar.userName = this.user()
         var car = this.tempCar
         this.$axios.post('/car/insert',
@@ -239,6 +239,32 @@
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) => {
           this.tempCar=response.data
+          this.jumpOrder()
+          alert("已加入购物车")
+        }).catch((error) => {
+          console.log("error")
+        })
+      },
+      //加入购物车
+      insertCar() {
+        var adr = ''
+        for (let i = 0; i < this.selectedOptions.length; i++) {
+          adr += this.selectedOptions[i]
+        }
+        this.tempCar.address = adr
+        this.tempCar.firstDate = this.value1[0]
+        this.tempCar.lastDate = this.value1[1]
+        this.tempCar.goodsId = this.goods.id
+        this.tempCar.goodsName = this.goods.goodsName
+        this.tempCar.price = this.goods.price
+
+        this.tempCar.userName = this.user()
+        var car = this.tempCar
+        this.$axios.post('/car/insert',
+          JSON.stringify(car),
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) => {
+          // this.tempCar=response.data
           alert("已加入购物车")
         }).catch((error) => {
           console.log("error")
@@ -254,9 +280,11 @@
       },
       buyCar(){
         this.addCar()
+      },
+      jumpOrder(){
         this.$store.dispatch('saveCar', this.tempCar).then(() => {
-        this.$router.replace("/Order")
-      })
+          this.$router.replace("/Order")
+        })
       }
 
     }
@@ -372,6 +400,9 @@
     font-size: 30px;
     display: block;
     margin-bottom: 2px;
+    white-space: nowrap;  /*文本强制不换行*/
+    text-overflow:ellipsis;  /*文本溢出显示省略号*/
+    overflow:hidden;  /*溢出的部分隐藏*/
   }
 
   .timtle-jj {

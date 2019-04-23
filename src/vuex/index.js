@@ -12,7 +12,7 @@ const store = new Vuex.Store({
   state:sessionStorage.getItem('state') ? JSON.parse(sessionStorage.getItem('state')): {
     user:'',
     tempGoods:{},
-    tempCar:{}
+    tempCar:[]
   },
   // 修改全局变量必须通过mutations中的方法
   // mutations只能采用同步方法
