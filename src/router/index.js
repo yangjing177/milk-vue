@@ -5,7 +5,9 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Commodity from '@/components/Commodity'
 import Details from '@/components/Details'
-import Order from '@/components/Order'
+import OrderDetails from '@/components/OrderDetails'
+import MemberCenter from '@/components/MemberCenter'
+import Order from '@/components/member/orderCenter/Order'
 
 
 import YouBei from '@/components/milk/freshMilk/YouBei'
@@ -64,9 +66,26 @@ export const constantRouterMap = [
     component: Details
   },
   {
-    path: '/Order',
-    name: 'Order',
-    component: Order
+    path: '/OrderDetails',
+    name: 'OrderDetails',
+    component: OrderDetails
+  },
+  {
+    path: '/OrderDetails',
+    name: 'OrderDetails',
+    component: OrderDetails
+  },
+  {
+    path: '/MemberCenter',
+    name: 'MemberCenter',
+    component: MemberCenter,
+    children: [
+      {
+        path: '/Order',
+        name: 'Order',
+        component: Order,
+      }
+    ]
   },
   {
     path: '/commodity',

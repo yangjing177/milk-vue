@@ -12,7 +12,7 @@
               <router-link to="/"><a href=""><img src='../image/logo.jpg'></a></router-link>
             </div>
             <div class="header-right">
-              <span class="huan-login">产品详情</span>
+              <span class="huan-login">订单详情</span>
             </div>
           </div>
         </el-header>
@@ -56,8 +56,8 @@
             <div class="order-middle-style">
               <h3 style="color: #535252;font-size: 16px;">是否安装奶箱</h3>
               <div class="order-beixuan">
-                <el-radio v-model="milkBox" label="1" style="color: #535252;font-size: 14px;">是的，我需要安装奶箱</el-radio>
-                <el-radio v-model="milkBox" label="2" style="color: #535252;font-size: 14px;">不，我不需要安装奶箱</el-radio>
+                <el-radio v-model="orderInfo.box" label="0" style="color: #535252;font-size: 14px;">是的，我需要安装奶箱</el-radio>
+                <el-radio v-model="orderInfo.box" label="1" style="color: #535252;font-size: 14px;">不，我不需要安装奶箱</el-radio>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@
               <div class="order-price-left">
                 实付金额：<span style="color: red">￥</span><span style="color: #e50014;font-size: 24px">{{totalMoney}}</span>
               </div>
-              <el-button  type="danger" style="float: right;width: 165px;height: 42px" @click="">确认支付</el-button>
+              <el-button  type="danger" style="float: right;width: 165px;height: 42px" @click="saveOrder">确认支付</el-button>
               <!--<div class="order-price-right"></div>-->
             </div>
           </div>
@@ -235,7 +235,20 @@
           postCode: [
             {required: true, message: '请至少选择一个活动性质', trigger: 'change'}
           ],
-        }
+        },
+        orderInfo:{
+          id:'',
+          orderNumber:'',
+          itemCount:'',
+          userName:'',
+          box:'1',
+          totalPrice:'',
+          orderStatus:'配送中',
+          createDate:'',
+          updateDate:'',
+          isDeleted:'0'
+        },
+
       }
     },
     methods: {
@@ -313,6 +326,19 @@
       jumpCar(){
         this.$store.dispatch('saveCar', this.car).then(() => {
           this.$router.replace("/Car")
+        })
+      },
+      saveOrder(){
+        this.orderInfo.itemCount=this.car.length
+        this.orderInfo.userName=this.user()
+        this.orderInfo.totalPrice=this.totalMoney
+        this.$axios.post('/order/insert',
+          this.orderInfo,this.car,
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) => {
+
+        }).catch((error) => {
+          console.log("error")
         })
       }
 
@@ -407,7 +433,7 @@
   }
   .order-pay-into{
     margin-left: 10px;
-    width: 347px;
+    width: 400px;
     height: 54px;
     float: left;
   }
@@ -423,9 +449,6 @@
     line-height: 42px;
     font-size: 14px;
     color: #737272;
-  }
-  .order-price-right{
-
   }
   .order-pay-shop{
     font-size: 14px;

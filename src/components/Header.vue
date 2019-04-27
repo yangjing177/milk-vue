@@ -24,7 +24,7 @@
               <router-link to="/login"><a href="Login.vue">[登录]</a></router-link>&nbsp;&nbsp;
               <router-link to="/register"><a href="Register.vue">[注册]</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
-            <router-link to=""><a href=".vue">会员中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <router-link to="/MemberCenter"><a href="MemberCenter.vue">会员中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             <router-link to=""><a href=".vue">我的订单</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             <router-link to="/Car"><a href="Car.vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
