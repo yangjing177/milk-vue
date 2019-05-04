@@ -248,6 +248,7 @@
           updateDate:'',
           isDeleted:'0'
         },
+        // orderProduct:[]
 
       }
     },
@@ -332,8 +333,25 @@
         this.orderInfo.itemCount=this.car.length
         this.orderInfo.userName=this.user()
         this.orderInfo.totalPrice=this.totalMoney
-        this.$axios.post('/order/insert',
-          this.orderInfo,this.car,
+        debugger
+        this.$axios.post('/order/insertOrderInfo',
+          JSON.stringify(this.orderInfo),
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) => {
+          var orderNum=response.data
+          console.log(orderNum)
+          this.saveOrderProduct(orderNum)
+        }).catch((error) => {
+          console.log("error")
+        })
+
+      },
+      saveOrderProduct(orderNum){
+        var cars=this.car
+        var orderProduct=new Array(2);
+        console.log(orderNum)
+        this.$axios.post('/order/insertOrderProduct'+'?orderNum='+orderNum,
+          JSON.stringify(this.car),
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) => {
 

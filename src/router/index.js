@@ -8,6 +8,9 @@ import Details from '@/components/Details'
 import OrderDetails from '@/components/OrderDetails'
 import MemberCenter from '@/components/MemberCenter'
 import Order from '@/components/member/orderCenter/Order'
+import OrderAudit from '@/components/member/orderCenter/OrderAudit'
+import OrderAuditFailed from '@/components/member/orderCenter/OrderAuditFailed'
+import OrderFinish from '@/components/member/orderCenter/OrderFinish'
 
 
 import YouBei from '@/components/milk/freshMilk/YouBei'
@@ -84,7 +87,22 @@ export const constantRouterMap = [
         path: '/Order',
         name: 'Order',
         component: Order,
-      }
+      },
+      {
+        path: '/OrderAudit',
+        name: 'OrderAudit',
+        component: OrderAudit,
+      },
+      {
+        path: '/OrderAuditFailed',
+        name: 'OrderAuditFailed',
+        component: OrderAuditFailed,
+      },
+      {
+        path: '/OrderFinish',
+        name: 'OrderFinish',
+        component: OrderFinish,
+      },
     ]
   },
   {

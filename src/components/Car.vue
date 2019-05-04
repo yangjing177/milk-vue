@@ -309,18 +309,6 @@
       }
     },
 
-
-    // computed:{
-    //   totalPrices: function () {
-    //     var length = this.carList.length;
-    //     var prices=0;
-    //     for (let i = 0; i < length; i++) {
-    //       prices +=this.carList[i].totalPrices()
-    //       this.ids.push(this.multipleSelection[i].id)
-    //     }
-    //     return this.calList + ' ' + this.lastName
-    //   }
-    // }
   }
 </script>
 

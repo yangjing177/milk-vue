@@ -34,11 +34,11 @@
                     <span style="float: left">我的订单</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="Order" style="min-width: 0px">审核中</el-menu-item>
                     <el-menu-item index="Order" style="min-width: 0px">配送中</el-menu-item>
-                    <el-menu-item index="Order" style="min-width: 0px">已完成</el-menu-item>
-                    <el-menu-item index="Order" style="min-width: 0px">已取消</el-menu-item>
-                    <el-menu-item index="Order" style="min-width: 0px">审核未通过</el-menu-item>
+                    <el-menu-item index="OrderAudit" style="min-width: 0px">审核中</el-menu-item>
+                    <!--<el-menu-item index="Order" style="min-width: 0px">已取消</el-menu-item>-->
+                    <el-menu-item index="OrderAuditFailed" style="min-width: 0px">审核未通过</el-menu-item>
+                    <el-menu-item index="OrderFinish" style="min-width: 0px">已完成</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
 
@@ -61,7 +61,7 @@
         </el-aside>
         <!--</div>-->
         <!--<div class="list-main">-->
-        <el-main style="float: left;width: 1000px">
+        <el-main style="float: left;padding: 0">
           <router-view></router-view>
         </el-main>
         <!--</div>-->
