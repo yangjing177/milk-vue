@@ -103,6 +103,9 @@
       }
     },
     methods: {
+      open4() {
+        this.$message.error('用户名或密码错误！');
+      },
       showPwd() {
         if (this.pwdType === 'password') {
           this.pwdType = ''
@@ -114,8 +117,13 @@
       handleLogin() {
             this.$axios.post('/users/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
               this.$store.dispatch('login', this.loginForm.username).then(() => {
-                this.$router.replace('/')
               })
+              debugger
+              if(response.data.code=='20000'){
+                this.$router.replace('/')
+              }else {
+                this.open4()
+              }
         })
       }
 

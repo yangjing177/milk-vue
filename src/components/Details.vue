@@ -283,7 +283,7 @@
       },
       jumpOrder(){
         this.$store.dispatch('saveCar', this.tempCar).then(() => {
-          this.$router.replace("/Order")
+          this.$router.replace("/OrderDetails")
         })
       }
 

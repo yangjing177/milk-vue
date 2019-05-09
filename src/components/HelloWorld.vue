@@ -40,15 +40,15 @@
             <div class="seach-box fl clearfix">
               <!--<i>&nbsp;</i>-->
               <form class="bs-docs-example form-search logo_navbar_middle_search" name="keywordsearchform" id="keywordsearchbox_keywordsearchform" method="get" action="/sxd/control/allprodsearch">
-                <input type="hidden" name="milktype" value="">
-                <input type="hidden" name="package" value="">
-                <input type="hidden" name="weight" value="">
-                <input type="hidden" name="SEARCH_CATEGORY_ID" value="">
-                <input type="hidden" name="SEARCH_OPERATOR" value="OR">
-                <input type="hidden" name="sortOrder" value="SortProductField%3AtotalQuantityOrdered">
-                <input type="hidden" name="sortAscending" value="N">
-                <input type="text" name="SEARCH_STRING" placeholder="热门搜索: 优倍 畅优">
-                <a href="javascript:;" onclick="searchSubmit();">搜 索</a>
+                <!--<input type="hidden" name="milktype" value="">-->
+                <!--<input type="hidden" name="package" value="">-->
+                <!--<input type="hidden" name="weight" value="">-->
+                <!--<input type="hidden" name="SEARCH_CATEGORY_ID" value="">-->
+                <!--<input type="hidden" name="SEARCH_OPERATOR" value="OR">-->
+                <!--<input type="hidden" name="sortOrder" value="SortProductField%3AtotalQuantityOrdered">-->
+                <!--<input type="hidden" name="sortAscending" value="N">-->
+                <input type="text" v-model="search" name="SEARCH_STRING" placeholder="热门搜索: 优倍 畅优">
+                <a href="javascript:;" @click="searchSubmit()">搜 索</a>
               </form>
             </div>
             <div class="add-cait fl clearfix">
@@ -148,6 +148,7 @@ export default {
   },
   data() {
     return {
+      search:'',
       showname:false, //判断是否已登陆
       carCount:0,
       imagesbox:[
@@ -230,10 +231,15 @@ export default {
         console.log("error")
       })
     },
-
     user(){
       return this.$store.state.user
     },
+    searchSubmit(){
+      debugger
+      this.$store.dispatch('saveSearch', this.search).then(() => {
+        this.$router.replace("/SearchGoods")
+      })
+    }
   }
 }
 

@@ -42,6 +42,7 @@
                       <el-menu-item index="NongXiang">香浓高钙</el-menu-item>
                       <el-menu-item index="DiZhi">低脂高钙</el-menu-item>
                       <el-menu-item index="NiuRu">牛乳饮品</el-menu-item>
+                      <el-menu-item index="SearchGoods" v-if="false">搜索</el-menu-item>
                     </el-menu-item-group>
                   </el-submenu>
 

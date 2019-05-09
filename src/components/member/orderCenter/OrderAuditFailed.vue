@@ -34,6 +34,11 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
+            type="primary"
+            @click="handleDelete(scope.$index, scope.row)">恢复配送
+          </el-button>
+          <el-button
+            size="mini"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)">退订
           </el-button>

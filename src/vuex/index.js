@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state:sessionStorage.getItem('state') ? JSON.parse(sessionStorage.getItem('state')): {
     user:'',
     tempGoods:{},
-    tempCar:[]
+    tempCar:[],
+    search:''
   },
   // 修改全局变量必须通过mutations中的方法
   // mutations只能采用同步方法
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
     },
     saveCar(state,payload){
       state.tempCar = payload
+    },
+    saveSearch(state,payload){
+      state.search = payload
     }
   },
   // 异步方法用actions
@@ -44,6 +48,9 @@ const store = new Vuex.Store({
     },
     saveCar(context,payload){
       context.commit('saveCar', payload)
+    },
+    saveSearch(context,payload){
+      context.commit('saveSearch', payload)
     }
   }
 })

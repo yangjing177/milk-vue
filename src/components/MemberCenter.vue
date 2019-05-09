@@ -10,16 +10,11 @@
           <router-link to="/"><a href=""><img src='../image/logo.jpg'></a></router-link>
         </div>
         <div class="header-right">
-          <span class="huan-login">会员中心</span>
+          <span class="huan-login">个人中心</span>
         </div>
       </el-header>
-      <div style="width:100%;border-top: 1px solid  #CCCCCC;transform: scaleY(1);margin-top: 50px"></div>
+      <div style="width:100%;border-top: 1px solid  #CCCCCC;transform: scaleY(1);margin-top: 50px;margin-bottom: 45px"></div>
 
-      <div class="commodity-biaoqian">
-        <div class="commodity-biaoqian-top">
-          <span class="commodity-all-name">全部商品></span>
-        </div>
-      </div>
 
       <div class="list-boxs">
         <!--<div class="list-left">-->
@@ -47,13 +42,11 @@
                     <span style="float: left">账号中心</span>
                   </template>
                   <el-menu-item-group>
-                    <el-menu-item index="BaiXue">我的会员</el-menu-item>
-                    <el-menu-item index="ChangYou">账号信息</el-menu-item>
-                    <el-menu-item index="RuShi">账号安全</el-menu-item>
+                    <!--<el-menu-item index="BaiXue">我的会员</el-menu-item>-->
+                    <el-menu-item index="AccountInfo">账号信息</el-menu-item>
+                    <el-menu-item index="AccountSafe">账号安全</el-menu-item>
                   </el-menu-item-group>
                 </el-submenu>
-
-
 
               </el-menu>
             </el-col>

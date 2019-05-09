@@ -39,7 +39,7 @@
           </el-button>
           <el-button
             size="mini"
-            type="primary"
+            type="danger"
             @click="handleDelete(scope.$index, scope.row)">退订
           </el-button>
         </template>
