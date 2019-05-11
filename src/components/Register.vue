@@ -41,7 +41,7 @@
                   <!--<svg-icon icon-class="password"></svg-icon>-->
                 </span>
                   <!--@keyup.enter.native:按回车触发登陆 autoComplete:启用自动完成功能   placeholder:文本框注释-->
-                  <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
+                  <el-input name="password"  @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
                             placeholder="密码"></el-input>
                   <!--所有的v-on都可以简写为@，比如说v-click可以简写为@click  单击触发事件-->
                 </el-form-item>
@@ -55,14 +55,14 @@
               </el-form-item>
 
                 <!--地址-->
-                <el-form-item prop="adress">
+                <el-form-item prop="email">
                 <span class="svg-container svg-container_login">
                 </span>
-                  <el-input name="adress" type="text" v-model="loginForm.address" autoComplete="on" placeholder="地址" />
+                  <el-input name="email" type="text" v-model="loginForm.email" autoComplete="on" placeholder="地址" />
                 </el-form-item>
 
                 <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
-                <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
+                <el-button type="primary" style="width:100%;"  @click.native.prevent="handleLogin">
                   注册
                 </el-button>
               </el-form>
@@ -88,13 +88,6 @@
       'vheader': Header
     },
     data(){
-      const validateUsername = (rule, value, callback) => {
-        if (value.length = 0) {
-          callback(new Error('请输入用户名'))
-        } else {
-          callback()
-        }
-      }
       const validatePass = (rule, value, callback) => {
         if (value.length < 5) {
           callback(new Error('密码不能小于5位'))
@@ -104,33 +97,61 @@
       }
       return {
         loginForm: {
+          id: '',
           username: '',
           password: '',
-          mobile:'',
-          address:''
+          mobile: '',
+          name: '',
+          sex: '',
+          idNumber:'',
+          email: '',
+          createDate: '',
+          updateDate: '',
+          isDeleted: '0'
         },
         loginRules: {
-          username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-          password: [{ required: true, trigger: 'blur', validator: validatePass }]
+          username: [{ required: true, message: '请输入用户名', trigger: 'blur'}],
+          password: [{ required: true, trigger: 'blur', validator: validatePass }],
+          mobile: [{ min: 11, max: 11, message: '请输入正确的手机号', trigger: 'blur', }],
+          email:[
+            // { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }
+          ]
         },
       }
     },
     methods: {
       handleLogin() {
-        this.$axios.post('/users/register',JSON.stringify(this.loginForm),
-          {headers: {'Content-Type': 'application/json'}}
-        ).then((response) =>{
-          debugger
-          // if(response.data=="注册成功"){
-            this.$router.replace('/login')
-          // }
-          // else if (response.data==="用户名已存在") {
-          //   callback(new Error('用户名已存在'))
-          // }
-        }).catch(response => {
-          debugger
-          console.log("注册失败")
+        this.$refs.loginForm.validate((valid) => {
+          if (valid) {
+            debugger
+            this.$axios.post('/users/register',JSON.stringify(this.loginForm),
+              {headers: {'Content-Type': 'application/json'}}
+            ).then((response) =>{
+              debugger
+              if(response.data.message=='注册成功'){
+                this.$router.replace('/login')
+                alert("注册成功！")
+              }
+              else if (response.data.message=='用户名已存在') {
+                alert("用户名已存在")
+              }
+            }).catch(response => {
+              debugger
+              console.log("注册失败")
+            })
+            // this.$notify({
+            //   title: '成功',
+            //   message: '提交成功',
+            //   type: 'success',
+            //   duration: 2000
+            // })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
         })
+
       }
     }
   }

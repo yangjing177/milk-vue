@@ -35,7 +35,7 @@
           <el-button
             size="mini"
             type="primary"
-            @click="handleDelete(scope.$index, scope.row)">恢复配送
+            @click="handleUpdate(scope.$index, scope.row)">恢复配送
           </el-button>
           <el-button
             size="mini"
@@ -45,6 +45,32 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!--恢复配送弹窗-->
+    <el-dialog
+      title="提示"
+      :visible.sync="updateVisible"
+      :modal-append-to-body="false"
+      width="300px" center>
+      <div class="del-dialog-cnt">是否确定恢复配送？</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="updateVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateOrderStatus">确 定</el-button>
+        </span>
+    </el-dialog>
+
+    <!--退订弹窗-->
+    <el-dialog
+      title="提示"
+      :visible.sync="delVisible"
+      :modal-append-to-body="false"
+      width="300px" center>
+      <div class="del-dialog-cnt">退订需再次进入审核，是否确定退订？</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="delVisible = false">取 消</el-button>
+        <el-button type="primary" @click="updateOrderStatus">确 定</el-button>
+        </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -53,6 +79,8 @@
     name: "Order",
     data() {
       return {
+        updateVisible:false,
+        delVisible:false,
         orderInfo:[],
         orderInfoDto:{
           user:'',
@@ -79,6 +107,28 @@
       },
       user(){
         return this.$store.state.user
+      },
+      handleDelete(index, row) {
+        this.delVisible = true;//显示退订弹框
+        this.info=row
+        this.info.orderStatus='30'
+      },
+      handleUpdate(index, row) {
+        this.updateVisible = true;//显示恢复配送弹框
+        this.info=row
+        this.info.orderStatus='10'
+      },
+      updateOrderStatus(){
+        this.delVisible=false
+        this.updateVisible=false
+        this.$axios.post('/order/updateOrderStatus',
+          JSON.stringify(this.info),
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) => {
+          this.queryOrderInfo();
+        }).catch((error) => {
+          console.log("error")
+        })
       },
     }
   }

@@ -24,9 +24,9 @@
               <router-link to="/login"><a href="Login.vue">[登录]</a></router-link>&nbsp;&nbsp;
               <router-link to="/register"><a href="Register.vue">[注册]</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
-            <router-link to="/AccountInfo"><a href=".vue">个人中心</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/Order"><a href="../components/member/orderCenter/Order.vue">我的订单</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link to="/Car"><a href="Car.vue">购物车</a></router-link>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" @click="jumpUserCenter()">个人中心</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" @click="jumpOrderCenter()">我的订单</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" @click="jumpCar()">购物车</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
         </div>
       </el-col>
@@ -113,8 +113,37 @@
         this.$store.dispatch('logout').then(() => {
           this.$router.replace('/login')
         })
+      },
+      jumpUserCenter(){
+        if(!this.user){
+          alert("您尚未登录，请先登录！")
+          this.$router.replace('/login')
+        }
+        else {
+          this.$router.replace('/AccountInfo')
+        }
+      },
+      jumpOrderCenter(){
+        if(!this.user){
+          alert("您尚未登录，请先登录！")
+          this.$router.replace('/login')
+        }
+        else {
+          this.$router.replace('/Order')
+        }
+      },
+      jumpCar(){
+        if(!this.user){
+          alert("您尚未登录，请先登录！")
+          this.$router.replace('/login')
+        }
+        else {
+          this.$router.replace('/Car')
+        }
       }
+
     },
+
     computed:{
       user(){
         return this.$store.state.user

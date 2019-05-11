@@ -75,13 +75,6 @@
       'vheader': Header
     },
     data(){
-      const validateUsername = (rule, value, callback) => {
-      // if (value.length = 0) {
-      //   callback(new Error('请输入用户名'))
-      // } else {
-      //   callback()
-      // }
-    }
       const validatePass = (rule, value, callback) => {
         if (value.length < 5) {
           callback(new Error('密码不能小于5位'))
@@ -95,10 +88,9 @@
           password: ''
         },
         loginRules: {
-          username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+          username: [{ required: true, message: '请输入用户名', trigger: 'blur'}],
           password: [{ required: true, trigger: 'blur', validator: validatePass }]
         },
-        loading: false,
         pwdType: 'password'
       }
     },
@@ -113,8 +105,9 @@
           this.pwdType = 'password'
         }
       },
-
       handleLogin() {
+        this.$refs.loginForm.validate((valid) => {
+          if (valid) {
             this.$axios.post('/users/login'+'?username='+this.loginForm.username+'&password='+this.loginForm.password).then((response) =>{
               this.$store.dispatch('login', this.loginForm.username).then(() => {
               })
@@ -124,7 +117,13 @@
               }else {
                 this.open4()
               }
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
         })
+
       }
 
     }

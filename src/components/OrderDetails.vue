@@ -28,7 +28,7 @@
               </div>
               <div class="adress-default">
                 <el-button type="text" @click="updateSeeMore" style="color: #3f5aa7">点击查看更多</el-button>
-                <el-button type="text" @click="updateAddAddress" style="margin-left: 30px;color: #535252;">添加新地址
+                <el-button type="text" @click="AddAddress" style="margin-left: 30px;color: #535252;">添加新地址
                 </el-button>
               </div>
               <div class="adress-default" v-if="seeMore" v-for="adr in address">
@@ -172,7 +172,47 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
         <el-button @click="delVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updateAddress">确 定</el-button>
+        <el-button type="primary" @click="updateAddress()">确 定</el-button>
+        </span>
+
+      </el-dialog>
+
+      <el-dialog
+        title="添加地址"
+        :visible.sync="addAddress"
+        :modal-append-to-body="false"
+        width="500px" center>
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" v-if="true"
+                 label-position="left">
+
+          <el-form-item label="收件人姓名:" prop="userName">
+            <el-input v-model="ruleForm.userName"></el-input>
+          </el-form-item>
+
+          <el-form-item label="所在地区:" prop="census">
+            <el-input v-model="ruleForm.census"></el-input>
+          </el-form-item>
+
+          <el-form-item label="详细地址:" prop="address">
+            <el-input v-model="ruleForm.address"></el-input>
+          </el-form-item>
+
+          <el-form-item label="手机号码:" prop="mobile">
+            <el-input v-model="ruleForm.mobile"></el-input>
+          </el-form-item>
+
+          <el-form-item label="邮编:" prop="postCode">
+            <el-input v-model="ruleForm.postCode"></el-input>
+          </el-form-item>
+
+          <el-checkbox-group v-model="ruleForm.defaultAddress">
+            <el-checkbox label="设置为默认收货地址" name="defaultAddress"></el-checkbox>
+          </el-checkbox-group>
+
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="addAddress = false">取 消</el-button>
+        <el-button type="primary" @click="insertAddress()">确 定</el-button>
         </span>
 
       </el-dialog>
@@ -201,7 +241,7 @@
         more: false,
         order: [],
         address: [],
-        insertAddress: false,
+        // insertAddress: false,
         defaultAddress: {},
         seeMore: false,
         addAddress: false,
@@ -212,28 +252,31 @@
         payMethod: true,
         milkBox: '2',
         ruleForm: {
+          id:'',
+          user_id:'',
           userName: '',
           census: '',
           address: '',
           mobile: '',
           postCode: '',
-          defaultAddress: false
+          defaultAddress: false,
+          isDeleted:0
         },
         rules: {
           userName: [
             {required: true, message: '请输入收件人姓名', trigger: 'blur'},
           ],
           census: [
-            {required: true, message: '请选择活动区域', trigger: 'change'}
+            {required: true, message: '请输入所在地区', trigger: 'blur'}
           ],
           address: [
-            {required: true, message: '请选择日期', trigger: 'change'}
+            {required: true, message: '请输入详细地址', trigger: 'blur'}
           ],
           mobile: [
-            {required: true, message: '请选择时间', trigger: 'change'}
+            {required: true, min: 11, max: 11, message: '请输入正确的手机号', trigger: 'blur', }
           ],
           postCode: [
-            {required: true, message: '请至少选择一个活动性质', trigger: 'change'}
+            {required: true, message: '请输入邮编', trigger: 'blur'}
           ],
         },
         orderInfo:{
@@ -284,7 +327,8 @@
       updateSeeMore() {
         this.seeMore = !this.seeMore
       },
-      updateAddAddress() {
+      AddAddress() {
+        this.ruleForm={}
         this.addAddress = !this.addAddress
       },
       updateEdit(adr) {
@@ -292,24 +336,58 @@
         this.ruleForm = Object.assign({}, adr)
         this.editVisible = true
       },
-      updateAddress() {
-        this.editVisible = false
-        if (this.ruleForm.defaultAddress == false) {
-          this.ruleForm.defaultAddress = 1
-        }
-        else {
-          this.ruleForm.defaultAddress = 0
-        }
-        console.log(this.ruleForm)
-        console.log(this.ruleForm)
-        this.$axios.post('/address/update',
-          JSON.stringify(this.ruleForm),
-          {headers: {'Content-Type': 'application/json'}}
-        ).then((response) => {
-          this.findAdressData();
-        }).catch((error) => {
-          console.log("error")
+      //添加新地址
+      insertAddress() {
+        debugger
+        this.$refs.ruleForm.validate((valid) => {
+          if (valid) {
+            this.addAddress = false
+            if (this.ruleForm.defaultAddress == false) {
+              this.ruleForm.defaultAddress = 1
+            }
+            else {
+              this.ruleForm.defaultAddress = 0
+            }
+            this.$axios.post('/address/insert',
+              JSON.stringify(this.ruleForm),
+              {headers: {'Content-Type': 'application/json'}}
+            ).then((response) => {
+              this.findAdressData();
+            }).catch((error) => {
+              console.log("error")
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
         })
+
+      },
+      //修改地址
+      updateAddress() {
+        this.$refs.ruleForm.validate((valid) => {
+          if (valid) {
+            this.editVisible = false
+            if (this.ruleForm.defaultAddress == false) {
+              this.ruleForm.defaultAddress = 1
+            }
+            else {
+              this.ruleForm.defaultAddress = 0
+            }
+            this.$axios.post('/address/update',
+              JSON.stringify(this.ruleForm),
+              {headers: {'Content-Type': 'application/json'}}
+            ).then((response) => {
+              this.findAdressData();
+            }).catch((error) => {
+              console.log("error")
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
+        })
+
       },
       //计算总价
       getTotalMoney() {

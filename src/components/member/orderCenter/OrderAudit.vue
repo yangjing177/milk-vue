@@ -74,7 +74,6 @@
     },
     methods: {
       queryOrderInfo() {
-        debugger
         this.orderInfoDto.user=this.user()
         this.orderInfoDto.orderStatus='30'
         this.$axios.post('/order/queryOrderInfo',

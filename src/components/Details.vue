@@ -35,7 +35,7 @@
               <div class="details-into">
                 <div class="details-into-top">
                   <a href="#" class="timtle">{{goods.goodsName}}</a>
-                  <span class="timtle-jj" style="color:#ff0404; ">温馨提示：该产品玻璃瓶包装需要回收。请饮用完后及时放回奶箱中，谢谢。</span>
+                  <span class="timtle-jj" style="color:#ff0404; ">温馨提示：如该产品为玻璃瓶包装，则需要回收。请饮用完后及时放回奶箱中，谢谢。</span>
                 </div>
                 <div class="role-price">
                   <span class="role-lvos">随心订价：<span style="color: red">￥</span><span
@@ -252,6 +252,7 @@
         },
         commentSelected:{
           userName:'',
+          goodsId:'',
           evaluate:''
         }
       }
@@ -260,6 +261,12 @@
       this.goods = this.getGoods()
       this.afterTime = this.GetDateStr(2)
       this.getComment()
+    },
+    watch: {
+      // 如果 `question` 发生改变，这个函数就会运行
+      grade: function () {
+        this.getComment()
+      }
     },
     methods: {
       user() {
@@ -351,6 +358,7 @@
       },
       getComment(){
         this.commentSelected.userName=this.user()
+        this.commentSelected.goodsId=this.goods.id
         this.commentSelected.evaluate=this.grade
         this.$axios.post('/comment/getCommentByUser',JSON.stringify(this.commentSelected),
           {headers: {'Content-Type': 'application/json'}}

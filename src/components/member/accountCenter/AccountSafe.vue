@@ -27,7 +27,6 @@
     name: "AccountInfo",
     data () {
       var validatePassWord = (rule, value, callback) => {
-        debugger
         if (value === '') {
           callback(new Error('请输入密码'));
         } else if (value !== this.users.password) {
@@ -37,7 +36,6 @@
         }
       };
       var validatePass = (rule, value, callback) => {
-        debugger
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
@@ -48,7 +46,6 @@
         }
       };
       var validatePass2 = (rule, value, callback) => {
-        debugger
         if (value === '') {
           callback(new Error('请再次输入密码'));
         } else if (value !== this.ruleForm.pass) {
