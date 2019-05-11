@@ -243,7 +243,7 @@
           userName:'',
           box:'1',
           totalPrice:'',
-          orderStatus:'配送中',
+          orderStatus:'10',
           createDate:'',
           updateDate:'',
           isDeleted:'0'
@@ -333,11 +333,11 @@
         this.orderInfo.itemCount=this.car.length
         this.orderInfo.userName=this.user()
         this.orderInfo.totalPrice=this.totalMoney
-        debugger
         this.$axios.post('/order/insertOrderInfo',
           JSON.stringify(this.orderInfo),
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) => {
+          debugger
           var orderNum=response.data
           console.log(orderNum)
           this.saveOrderProduct(orderNum)
@@ -354,7 +354,8 @@
           JSON.stringify(this.car),
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) => {
-
+          alert("支付成功")
+          this.$router.replace("/Order")
         }).catch((error) => {
           console.log("error")
         })

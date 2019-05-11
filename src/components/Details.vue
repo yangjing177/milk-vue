@@ -97,6 +97,39 @@
           </div>
         </el-main>
 
+        <el-main style="padding: 0">
+          <div class="car-details">
+            <span class="car-details-font">产品评论</span>
+          </div>
+          <div class="comment-list">
+            <el-radio-group v-model="grade">
+              <el-radio :label="0">全选</el-radio>
+              <el-radio :label="1">好评</el-radio>
+              <el-radio :label="2">中评</el-radio>
+              <el-radio :label="3">差评</el-radio>
+            </el-radio-group>
+
+            <el-row v-for="(project, index) in comment" :key="index" :offset="index%4 > 0 ? 2:0" style="margin-bottom: 10px">
+              <el-col :span="3">
+                <span class="comment-user">{{project.userName}}</span>
+              </el-col>
+              <el-col :span="21">
+                <p class="comment-font">{{project.comment}}</p>
+                <p style="font-size: 12px;color: #B0B0B0;">{{project.createDate}}</p>
+              </el-col>
+            </el-row>
+
+            <el-pagination layout="total, prev, pager, next"
+                           background
+                           :page-size="8"
+                           @size-change="handleSizeChange"
+                           :total="total"
+                           @current-change="handleCurrentChange"
+                           style="text-align:center;">
+            </el-pagination>
+          </div>
+        </el-main>
+
       </el-container>
     </div>
   </div>
@@ -112,10 +145,14 @@
     },
     data() {
       return {
+        total: 0,
+        page: 1,
+        pageSize: 8,
         goods: {},
         selectedOptions: [],
         value1: [this.GetDateStr(2),this.GetDateStr(32)],
         afterTime: '',
+        grade: 0,
         pickerOptions: {
           disabledDate: (time) => {
             // 设置可选择的日期为第二天之后
@@ -202,12 +239,27 @@
           createDate: '',
           updateDate: '',
           isDeleted: ''
+        },
+        comment:{
+          id:'',
+          userId: '',
+          userName: '',
+          comment: '',
+          evaluate: '0',
+          commentStatus: '',
+          createDate: '',
+          isDeleted: ''
+        },
+        commentSelected:{
+          userName:'',
+          evaluate:''
         }
       }
     },
     created() {
       this.goods = this.getGoods()
       this.afterTime = this.GetDateStr(2)
+      this.getComment()
     },
     methods: {
       user() {
@@ -285,8 +337,34 @@
         this.$store.dispatch('saveCar', this.tempCar).then(() => {
           this.$router.replace("/OrderDetails")
         })
+      },
+      //评论分页跳转
+      handleSizeChange(val) {
+        this.page = val
+        console.log(this.page)
+        this.fetchData()
+      },
+      handleCurrentChange(val) {
+        this.page = val
+        console.log(this.page)
+        this.fetchData()
+      },
+      getComment(){
+        this.commentSelected.userName=this.user()
+        this.commentSelected.evaluate=this.grade
+        this.$axios.post('/comment/getCommentByUser',JSON.stringify(this.commentSelected),
+          {headers: {'Content-Type': 'application/json'}}
+        ).then((response) => {
+          const limit = 8
+          const pageList = response.data.filter((item, index) => index < limit * this.page && index >= limit * (this.page - 1))
+          console.log(pageList)
+          this.total = response.data.length
+          this.comment = pageList
+          // this.listLoading = false
+        }).catch((error) =>{
+          console.log("error")
+        })
       }
-
     }
   }
 </script>
@@ -510,6 +588,23 @@
     padding-left: 18px;
     padding-right: 18px;
     border-right: 1px solid #e2e2e2;
+  }
+  .comment-list{
+    width: 1200px;
+    margin: auto;
+  }
+  .comment-user{
+    font-size: 14px;
+    line-height: 81px;
+    color: #3F3F3F;
+    word-wrap: break-word;
+    margin: auto;
+  }
+  .comment-font{
+    font-size: 14px;
+    line-height: 1.4;
+    color: #3F3F3F;
+    word-wrap: break-word;
   }
 
 </style>

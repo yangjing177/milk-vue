@@ -108,20 +108,16 @@
     created() {
       this.selected.goodsName=this.getSearch()
       this.fetchData()
-      console.log(this.selected.goodsName)
-      // this.message=this.$route.params.price
     },
     methods:{
       fetchData() {
-        debugger
         console.log(this.selected);
-        // console.log(JSON.stringify(this.selected))
         this.$axios.post('/goods/list',JSON.stringify(this.selected),
           {headers: {'Content-Type': 'application/json'}}
         ).then((response) => {
+          debugger
           const limit = 8
           const pageList = response.data.filter((item, index) => index < limit * this.page && index >= limit * (this.page - 1))
-          console.log(pageList)
           this.total = response.data.length
           this.goods = pageList
           // this.listLoading = false

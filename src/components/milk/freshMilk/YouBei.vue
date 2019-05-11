@@ -11,7 +11,7 @@
               <div class="goods-introduce">{{project.goodsName}}</div>
               <div class="goods-price">随心订价：￥{{project.price}}</div>
               <div class="bottom">
-                <el-button type="danger" size="small" style=""><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
+                <el-button type="danger" size="small" style="" @click="jumpDetails(project)"><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
               </div>
             </el-card>
           </el-col>

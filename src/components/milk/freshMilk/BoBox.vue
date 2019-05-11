@@ -11,7 +11,7 @@
               <div class="goods-introduce">{{project.goodsName}}</div>
               <div class="goods-price">随心订价：￥{{project.price}}</div>
               <div class="bottom">
-                <el-button type="danger" size="small" style=""><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
+                <el-button type="danger" size="small" style="" @click="jumpDetails(project)"><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
               </div>
             </el-card>
           </el-col>
@@ -48,7 +48,7 @@
               <div class="goods-introduce">{{project.goodsName}}</div>
               <div class="goods-price">随心订价：￥{{project.price}}</div>
               <div class="bottom">
-                <el-button type="danger" size="small" style=""><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
+                <el-button type="danger" size="small" style="" @click="jumpDetails(project)"><svg-icon icon-class="shoppingCard"/> 立即购买</el-button>
               </div>
             </el-card>
           </el-col>
@@ -96,7 +96,7 @@
         sizeList:['不限','小于299','300至499','大于500'],
         selected:{
           parentType:'新鲜牛奶',
-          brand:'经典玻璃杯',
+          brand:'经典玻璃瓶',
           type:'不限',
           packager:'不限',
           size:'不限'
@@ -161,7 +161,12 @@
         }
         this.fetchData()
       },
-
+      //跳转到商品详情页
+      jumpDetails(project){
+        this.$store.dispatch('saveGoods', project).then(() => {
+          this.$router.replace("/Details")
+        })
+      }
     }
   }
 </script>
