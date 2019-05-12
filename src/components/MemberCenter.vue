@@ -59,16 +59,21 @@
         </el-main>
         <!--</div>-->
       </div>
+      <el-header class="header" style="padding: 0px;margin-top: 100px">
+        <bottom />
+      </el-header>
     </el-container>
   </div>
 </template>
 
 <script>
   import Header from '@/components/Header'
+  import Bottom from '@/components/Bottom'
   export default {
     name: "commodity",
     components: {
-      'vheader': Header
+      'vheader': Header,
+      'bottom': Bottom
     },
     data () {
       return {
@@ -126,7 +131,7 @@
   }
   .list-boxs{
     width: 1200px;
-    height: 1308px;
+    /*height: 1308px;*/
     margin: auto;
   }
   .list-left{

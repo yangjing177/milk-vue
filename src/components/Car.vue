@@ -1,7 +1,7 @@
 <template>
   <div class="HelloWorld">
     <div class="child">
-      <el-container style="height: 100%">
+      <el-container>
         <el-header class="header" style="padding: 0">
           <vheader/>
         </el-header>
@@ -19,7 +19,7 @@
         <!--<hr style="width:100%;border: 1px solid black;margin-top: 30px"/>-->
         <div style="width:100%;border-top: 1px solid  #CCCCCC;transform: scaleY(1);margin-top: 50px"></div>
 
-        <el-main style="background-color: #F5F5F5;">
+        <el-main>
           <div class="table-list">
             <el-button @click="delAll()" size="mini" style="margin-bottom: 20px">批量删除</el-button>
             <el-table
@@ -99,10 +99,13 @@
             </div>
           </div>
         </el-main>
+        <el-header class="header" style="padding: 0px">
+          <bottom />
+        </el-header>
 
       </el-container>
 
-      //日期修改弹框
+      <!--//日期修改弹框-->
       <el-dialog title="修改配送日期" :visible.sync="dialogTableVisible " :modal-append-to-body="false">
         <el-form :model="temp">
           <el-form-item label="选择日期">
@@ -131,7 +134,7 @@
         </div>
       </el-dialog>
 
-      //删除弹框
+      <!--//删除弹框-->
       <el-dialog
         title="提示"
         :visible.sync="delVisible"
@@ -151,11 +154,12 @@
 
 <script>
   import Header from '@/components/Header'
-
+  import Bottom from '@/components/Bottom'
   export default {
     name: "car",
     components: {
-      'vheader': Header
+      'vheader': Header,
+      'bottom': Bottom
     },
     data() {
       return {
@@ -314,21 +318,20 @@
 
 <style scoped>
   .HelloWorld {
-    position: relative;
-    height: 100%;
+    position:relative;
+    height:100%;
     /*//高度根据需求自行设定*/
   }
-
-  .child {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
     /*//left,top,right,*/
     /*bottom都为0，充满真个页面*/
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
     /*//设置Y轴出现滚动条，X轴隐藏*/
   }
   .header-into{

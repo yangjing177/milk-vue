@@ -124,7 +124,7 @@
 <style scoped>
   .account-info{
     width: 936px;
-    height: 840px;
+    /*height: 400px;*/
     margin-left: 40px;
   }
   .name-title{

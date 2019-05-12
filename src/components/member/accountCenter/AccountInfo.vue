@@ -99,8 +99,9 @@
 <style scoped>
 .account-info{
   width: 936px;
-  height: 840px;
+  /*height: 590px;*/
   margin-left: 40px;
+
 }
   .name-title{
     width: 936px;

@@ -1,4 +1,6 @@
 <template>
+  <div class="HelloWorld">
+    <div class="child">
   <el-container>
     <el-header class="header">
       <vheader />
@@ -64,15 +66,23 @@
 
     </el-main>
     </div>
+
+    <el-header class="header" style="padding: 0px;margin-top: 100px">
+      <bottom />
+    </el-header>
   </el-container>
+    </div>
+  </div>
 </template>
 
 <script>
   import Header from '@/components/Header'
+  import Bottom from '@/components/Bottom'
   // import request from '@/utils/request'
   export default {
     components: {
-      'vheader': Header
+      'vheader': Header,
+      'bottom': Bottom
     },
     data(){
       const validatePass = (rule, value, callback) => {
@@ -133,6 +143,23 @@
 
 
 <style scoped>
+  .HelloWorld {
+    position:relative;
+    height:100%;
+    /*//高度根据需求自行设定*/
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    /*//left,top,right,*/
+    /*bottom都为0，充满真个页面*/
+    overflow-y:auto;
+    overflow-x:hidden;
+    /*//设置Y轴出现滚动条，X轴隐藏*/
+  }
   .header-left{
     margin-left: 350px;
     float: left;

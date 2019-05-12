@@ -1,5 +1,6 @@
 <template>
-  <div id="HelloWorld" style="height: 2500px;width: 100%">
+  <div class="HelloWorld">
+    <div class="child">
     <el-container>
       <el-header class="header" style="padding: 0px">
         <vheader />
@@ -110,16 +111,23 @@
           </el-main>
         <!--</div>-->
       </div>
+
+      <el-header class="header" style="padding: 0px">
+        <bottom />
+      </el-header>
     </el-container>
+    </div>
   </div>
 </template>
 
 <script>
   import Header from '@/components/Header'
+  import Bottom from '@/components/Bottom'
     export default {
         name: "commodity",
       components: {
-        'vheader': Header
+        'vheader': Header,
+        'bottom': Bottom
       },
       data () {
         return {
@@ -139,6 +147,23 @@
 
 
 <style scoped>
+  .HelloWorld {
+    position:relative;
+    height:100%;
+    /*//高度根据需求自行设定*/
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    /*//left,top,right,*/
+    /*bottom都为0，充满真个页面*/
+    overflow-y:auto;
+    overflow-x:hidden;
+    /*//设置Y轴出现滚动条，X轴隐藏*/
+  }
   .header-left{
     margin-left: 350px;
     float: left;
@@ -177,7 +202,7 @@
   }
   .list-boxs{
     width: 1200px;
-    height: 1308px;
+    /*height: 1308px;*/
     margin: auto;
   }
   .list-left{

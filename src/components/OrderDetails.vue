@@ -1,7 +1,7 @@
 <template>
   <div class="HelloWorld">
     <div class="child">
-      <el-container style="height: 100%">
+      <el-container>
         <el-header class="header" style="padding: 0">
           <vheader/>
         </el-header>
@@ -134,7 +134,9 @@
             </div>
           </div>
         </el-main>
-
+        <el-header class="header" style="padding: 0px">
+          <bottom />
+        </el-header>
       </el-container>
 
       <el-dialog
@@ -222,11 +224,12 @@
 
 <script>
   import Header from '@/components/Header'
-
+  import Bottom from '@/components/Bottom'
   export default {
     name: "order",
     components: {
-      'vheader': Header
+      'vheader': Header,
+      'bottom': Bottom
     },
     created() {
       this.car = this.getCar()
@@ -445,10 +448,21 @@
 
 <style scoped>
   .HelloWorld {
-    /*position: relative;*/
-    /*height: 100%;*/
-    height: 1500px;
+    position:relative;
+    height:100%;
     /*//高度根据需求自行设定*/
+  }
+  .child{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    /*//left,top,right,*/
+    /*bottom都为0，充满真个页面*/
+    overflow-y:auto;
+    overflow-x:hidden;
+    /*//设置Y轴出现滚动条，X轴隐藏*/
   }
 
   .header-into {

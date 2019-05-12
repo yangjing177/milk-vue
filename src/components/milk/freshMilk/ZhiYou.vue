@@ -186,7 +186,7 @@
 <style scoped>
 .all-goods{
   width: 960px;
-  height: 1308px;
+  /*height: 1308px;*/
   font-size: 16px;
   color: #535252;
 }
@@ -292,7 +292,7 @@ ul, ol {
 
   .sort-goodslist{
     width: 960px;
-    height: 738px;
+    /*height: 738px;*/
   }
   .sort-header{
     width: 960px;

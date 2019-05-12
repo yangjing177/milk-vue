@@ -143,7 +143,7 @@ export default {
   name: 'HelloWorld',
   components: {
     'vheader': Header,
-    'bottom': Bottom,
+    'bottom': Bottom
   },
   created(){
     this.findCarCount()
