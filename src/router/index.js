@@ -15,7 +15,6 @@ import AccountInfo from '@/components/member/accountCenter/AccountInfo'
 import AccountSafe from '@/components/member/accountCenter/AccountSafe'
 import SearchGoods from '@/components/SearchGoods'
 
-
 import YouBei from '@/components/milk/freshMilk/YouBei'
 import ZhiYou from '@/components/milk/freshMilk/ZhiYou'
 import ChunXian from '@/components/milk/freshMilk/ChunXian'
@@ -46,6 +45,17 @@ import ImportMilk from '@/components/milk/naifen/ImportMilk'
 import Goods from '@/components/Goods'
 import Car from '@/components/Car'
 
+import Introduce from '@/components/Introduce'
+import Contact from '@/components/introduce/Contact'
+import Brief from '@/components/introduce/Brief'
+import Recruit from '@/components/introduce/Recruit'
+import FriendlyLinks from '@/components/introduce/FriendlyLinks'
+import Problem from '@/components/introduce/Problem'
+import Law from '@/components/introduce/Law'
+import CopyrightNotice from '@/components/introduce/CopyrightNotice'
+import Cancel from '@/components/introduce/Cancel'
+import Pay from '@/components/introduce/Pay'
+import Map from '@/components/introduce/Map'
 
 Vue.use(Router)
 
@@ -80,6 +90,63 @@ export const constantRouterMap = [
     path: '/OrderDetails',
     name: 'OrderDetails',
     component: OrderDetails
+  },
+  {
+    path: '/Introduce',
+    name: 'Introduce',
+    component: Introduce,
+    children: [
+      {
+        path: '/Contact',
+        name: 'Contact',
+        component: Contact,
+      },
+      {
+        path: '/Brief',
+        name: 'Brief',
+        component: Brief,
+      },
+      {
+        path: '/Recruit',
+        name: 'Recruit',
+        component: Recruit,
+      },
+      {
+        path: '/FriendlyLinks',
+        name: 'FriendlyLinks',
+        component: FriendlyLinks,
+      },
+      {
+        path: '/Problem',
+        name: 'Problem',
+        component: Problem,
+      },
+      {
+        path: '/Law',
+        name: 'Law',
+        component: Law,
+      },
+      {
+        path: '/CopyrightNotice',
+        name: 'CopyrightNotice',
+        component: CopyrightNotice,
+      },
+      {
+        path: '/Cancel',
+        name: 'Cancel',
+        component: Cancel,
+      },
+      {
+        path: '/Pay',
+        name: 'Pay',
+        component: Pay,
+      },
+      {
+        path: '/Map',
+        name: 'Map',
+        component: Map,
+      }
+    ]
   },
   {
     path: '/MemberCenter',

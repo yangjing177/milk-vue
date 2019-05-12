@@ -128,9 +128,9 @@
         </div>
       </el-main>
 
-      <el-footer>
-
-      </el-footer>
+      <el-header class="header" style="padding: 0px">
+        <bottom />
+      </el-header>
     </el-container>
     </div>
   </div>
@@ -138,10 +138,12 @@
 
 <script>
   import Header from '@/components/Header'
+  import Bottom from '@/components/Bottom'
 export default {
   name: 'HelloWorld',
   components: {
-    'vheader': Header
+    'vheader': Header,
+    'bottom': Bottom,
   },
   created(){
     this.findCarCount()
