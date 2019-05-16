@@ -24,7 +24,7 @@
               <h3 style="color: #535252;font-size: 16px;">收货信息</h3>
               <div style="color: #535252;font-size: 13px;">默认地址：</div>
               <div class="adress-default" v-if="true">
-                {{defaultAddress.userName}}&nbsp;&nbsp;&nbsp;{{defaultAddress.census}}&nbsp;&nbsp;{{defaultAddress.address}}&nbsp;&nbsp;{{defaultAddress.mobile}}
+                {{defaultAddress.name}}&nbsp;&nbsp;&nbsp;{{defaultAddress.census}}&nbsp;&nbsp;{{defaultAddress.address}}&nbsp;&nbsp;{{defaultAddress.mobile}}
               </div>
               <div class="adress-default">
                 <el-button type="text" @click="updateSeeMore" style="color: #3f5aa7">点击查看更多</el-button>
@@ -32,9 +32,9 @@
                 </el-button>
               </div>
               <div class="adress-default" v-if="seeMore" v-for="adr in address">
-                {{adr.userName}}&nbsp;&nbsp;&nbsp;{{adr.census}}&nbsp;&nbsp;{{adr.address}}&nbsp;&nbsp;{{adr.mobile}}&nbsp;&nbsp;
+                {{adr.name}}&nbsp;&nbsp;&nbsp;{{adr.census}}&nbsp;&nbsp;{{adr.address}}&nbsp;&nbsp;{{adr.mobile}}&nbsp;&nbsp;
                 <el-button type="text" @click="updateEdit(adr)" style="color: #3f5aa7">编辑</el-button>&nbsp;&nbsp;
-                <el-button type="text" @click="" style="color: #3f5aa7">删除</el-button>
+                <el-button type="text" @click="deleteEdit(adr)" style="color: #3f5aa7">删除</el-button>
               </div>
 
             </div>
@@ -147,8 +147,8 @@
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" v-if="true"
                  label-position="left">
 
-          <el-form-item label="收件人姓名:" prop="userName">
-            <el-input v-model="ruleForm.userName"></el-input>
+          <el-form-item label="收件人姓名:" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
 
           <el-form-item label="所在地区:" prop="census">
@@ -187,8 +187,8 @@
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" v-if="true"
                  label-position="left">
 
-          <el-form-item label="收件人姓名:" prop="userName">
-            <el-input v-model="ruleForm.userName"></el-input>
+          <el-form-item label="收件人姓名:" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
 
           <el-form-item label="所在地区:" prop="census">
@@ -218,6 +218,19 @@
         </span>
 
       </el-dialog>
+
+      <!--//删除弹框-->
+      <el-dialog
+        title="提示"
+        :visible.sync="delVisible"
+        :modal-append-to-body="false"
+        width="300px" center>
+        <div class="del-dialog-cnt">是否确定删除？</div>
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="delVisible = false">取 消</el-button>
+        <el-button type="primary" @click="deleteAddress">确 定</el-button>
+        </span>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -238,6 +251,7 @@
     },
     data() {
       return {
+        delVisible:false,
         car: [],
         length:0,
         totalMoney:0,
@@ -256,8 +270,8 @@
         milkBox: '2',
         ruleForm: {
           id:'',
-          user_id:'',
           userName: '',
+          name:'',
           census: '',
           address: '',
           mobile: '',
@@ -266,7 +280,7 @@
           isDeleted:0
         },
         rules: {
-          userName: [
+          name: [
             {required: true, message: '请输入收件人姓名', trigger: 'blur'},
           ],
           census: [
@@ -339,6 +353,11 @@
         this.ruleForm = Object.assign({}, adr)
         this.editVisible = true
       },
+      deleteEdit(adr) {
+        // this.edit=!this.edit
+        this.ruleForm = Object.assign({}, adr)
+        this.delVisible = true
+      },
       //添加新地址
       insertAddress() {
         debugger
@@ -351,6 +370,8 @@
             else {
               this.ruleForm.defaultAddress = 0
             }
+            debugger
+            this.ruleForm.userName=this.user()
             this.$axios.post('/address/insert',
               JSON.stringify(this.ruleForm),
               {headers: {'Content-Type': 'application/json'}}
@@ -392,6 +413,19 @@
         })
 
       },
+      //删除地址
+      deleteAddress() {
+            this.delVisible = false
+            this.$axios.post('/address/delete',
+              JSON.stringify(this.ruleForm),
+              {headers: {'Content-Type': 'application/json'}}
+            ).then((response) => {
+              this.findAdressData();
+            }).catch((error) => {
+              console.log("error")
+            })
+          },
+
       //计算总价
       getTotalMoney() {
         // 商品总价首先置0，判断选中后，再计入总价

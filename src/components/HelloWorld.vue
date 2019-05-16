@@ -14,7 +14,7 @@
 
           <div class="lu-nav fl clearfix">
             <div class="lu-navtit clearfix">
-              <router-link to=""><a href="##"><span class="top-text">首&nbsp;&nbsp;页</span></a>&nbsp;&nbsp;&nbsp;&nbsp;|</router-link>
+              <router-link to="/"><a href="javascript:;"><span class="top-text">首&nbsp;&nbsp;页</span></a>&nbsp;&nbsp;&nbsp;&nbsp;|</router-link>
             </div>
             <div class="lu-navtit clearfix">
               <router-link to="/ZhiYou"><a href="ZhiYou.vue"><span class="top-text">新鲜牛奶</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
@@ -29,7 +29,7 @@
               <router-link to="/NiuRu"><a href="NiuRu.vue"><span class="top-text">新品上市</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
             </div>
             <div class="lu-navtit clearfix">
-              <router-link to=""><a href="##"><span class="top-text">销售排行</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
+              <router-link to=""><a href="javascript:;"><span class="top-text">销售排行</span></a></router-link>&nbsp;&nbsp;&nbsp;&nbsp;|
             </div>
             <!--<div class="lu-navtit clearfix">-->
               <!--<router-link to=""><a href=""><span class="top-text">众测首页</span></a></router-link>-->
