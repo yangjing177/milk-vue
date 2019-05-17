@@ -1,7 +1,7 @@
 <template>
   <div class="account-info">
     <h3 class="name-title">密码修改</h3>
-    <el-form :model="ruleForm" :rules="rules" label-width="100px">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
       <el-form-item label="用户名：">
         <span>{{users.username}}</span>
       </el-form-item>
@@ -106,17 +106,24 @@
         })
       },
       saveUser(){
-        debugger
-        this.users.password=this.ruleForm.pass
-        this.$axios.post('/users/updateUser',
-          JSON.stringify(this.users),
-          {headers: {'Content-Type': 'application/json'}}
-        ).then((response) => {
-          this.ruleForm = response.data
-          alert("密码修改成功")
-        }).catch((error) => {
-          console.log("error")
+        this.$refs.ruleForm.validate((valid) => {
+          if (valid) {
+            this.users.password=this.ruleForm.pass
+            this.$axios.post('/users/updateUser',
+              JSON.stringify(this.users),
+              {headers: {'Content-Type': 'application/json'}}
+            ).then((response) => {
+              this.ruleForm = response.data
+              alert("密码修改成功")
+            }).catch((error) => {
+              console.log("error")
+            })
+          } else {
+            console.log('error submit!!')
+            return false
+          }
         })
+
       },
       user(){
         return this.$store.state.user
