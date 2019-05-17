@@ -165,9 +165,16 @@
         },
         //跳转到商品详情页
         jumpDetails(project){
-          this.$store.dispatch('saveGoods', project).then(() => {
-            this.$router.replace("/Details")
-          })
+          debugger
+          if(!this.user){
+            alert("您尚未登录，请先登录！")
+            this.$router.replace('/login')
+          }
+          else {
+            this.$store.dispatch('saveGoods', project).then(() => {
+              this.$router.replace("/Details")
+            })
+          }
         }
         //跳转页面并传值
         // buygoods(price){
@@ -179,6 +186,11 @@
         //   })
         // }
 
+      },
+      computed:{
+        user(){
+          return this.$store.state.user
+        }
       }
     }
 </script>
