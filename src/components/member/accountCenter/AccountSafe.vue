@@ -38,7 +38,9 @@
       var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
-        } else {
+        }else if(value.length<5){
+          callback(new Error('密码不能小于5位'));
+        }else {
           if (this.checkPass !== '') {
             this.$refs.ruleForm.validateField('checkPass');
           }
@@ -46,7 +48,9 @@
         }
       };
       var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
+        if(value.length<5){
+          callback(new Error('密码不能小于5位'));
+        }else if (value === '') {
           callback(new Error('请再次输入密码'));
         } else if (value !== this.ruleForm.pass) {
           callback(new Error('两次输入密码不一致!'));
