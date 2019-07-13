@@ -222,6 +222,7 @@ export default {
         console.log("error")
       })
     },
+    //查询购物车商品数量
     findCarCount(){
       const user=this.user()
       this.$axios.post('/car/findCarCount',

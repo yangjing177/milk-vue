@@ -237,7 +237,7 @@
   }
   .user-login-word{
     font-size: 24px;
-    color: #7a7a7a;
+    color: black;
   }
   .login-form-style{
     width: 335px;
